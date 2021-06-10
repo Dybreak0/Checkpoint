@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    x:Class="MobileJO.Core.Views.EditCasesSelectedPage"
+    Title="Cases Selected">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Next" Command="{Binding GoToLastPageCommand}"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout Orientation="Vertical" Margin="{StaticResource PageMargin}">
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Case#" WidthRequest="100" FontAttributes="Bold"/>
+            <Label Text="Subject" FontAttributes="Bold"/>
+        </StackLayout>
+        <StackLayout HeightRequest="230">
+            <ListView x:Name="listView" 
+                      ItemsSource="{Binding CasesSelected}"
+                      SelectedItem="{Binding SelectedCase, Mode=TwoWay}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0" Grid.Column="0" 
+                                       Text="{Binding CaseNumber}"/>
+
+                                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                                        Text="{Binding CaseSubject}"/>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+        <StackLayout VerticalOptions="EndAndExpand">
+            <Button Text="Edit"
+                    Command="{Binding EditCasesCommand}"/>
+        </StackLayout>
+    </StackLayout>
+
+</base:BaseContentPage>

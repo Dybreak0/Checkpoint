@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns:renderer="clr-namespace:MobileJO.Core.CustomRenderer;assembly=MobileJO.Core"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    x:Class="MobileJO.Core.Views.NewJOFirstPage"
+    Title="Job Order Form">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Next" Command="{Binding GoToSecondPageCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView Margin="{StaticResource PageMargin}">
+        <StackLayout Orientation="Vertical"
+                     Spacing="-5">
+
+            <Grid RowSpacing="-10">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="1"
+                       Text="All fields with (*) are required." 
+                       TextColor="Red" 
+                       FontSize="8"/>
+
+                <Label Grid.Row="1" Grid.Column="0"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="JO Subject:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="1" Grid.Column="1" 
+                       x:Name="jobOrderSubjectEntry"
+                       Text="{Binding JobOrderSubject}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="2" Grid.Column="1" 
+                       Text="{Binding JOSubjectErrorMsg}"
+                       IsVisible="{Binding JobOrderSubjectError}"/>
+
+                <Label Grid.Row="3" Grid.Column="0"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Account Name:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <renderer:CustomAutoSuggestBox Grid.Row="3" Grid.Column="1" x:Name="SuggestBox" 
+                           DisplayMemberPath="Name" 
+                           TextMemberPath="Name"
+                           TextChanged="SuggestBox_TextChanged" 
+                           QuerySubmitted="SuggestBox_QuerySubmitted"
+                           TextColor="Black"/>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="4" Grid.Column="1" 
+                       Text="Account Name is required."
+                       IsVisible="{Binding AccountIDError}"/>
+
+                <Label Grid.Row="5" Grid.Column="0"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Branch:"  />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="5" Grid.Column="1" 
+                       x:Name="branchEntry"
+                       Text="{Binding Branch}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="6" Grid.Column="1" 
+                       Text="{Binding BranchErrorMsg}"
+                       IsVisible="{Binding BranchError}"/>
+
+                <Label Grid.Row="7" Grid.Column="0"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Date Start:"  />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <renderer:CustomDatePicker  
+                    Grid.Row="7" Grid.Column="1" 
+                    Date="{Binding DateStart}"
+                    MinimumDate="{x:Static sys:DateTime.Now}"
+                    Format="MM/dd/yyyy" 
+                    HasBackground="true">
+                </renderer:CustomDatePicker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="8" Grid.Column="1" 
+                       Text="Invalid value for Date Start. Must be earlier or equal to Date End."
+                       IsVisible="{Binding DateStartError}"/>
+
+                <Label Grid.Row="9" Grid.Column="0"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Time Start:"  />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <TimePicker Grid.Row="9" Grid.Column="1" 
+                            Time="{Binding TimeStart}">
+                </TimePicker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="10" Grid.Column="1" 
+                       Text="Invalid value for Time Start. Must be earlier or equal with Time End."
+                       IsVisible="{Binding TimeStartError}"/>
+
+                <Label Grid.Row="11" Grid.Column="0"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Date End:"  />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <renderer:CustomDatePicker Grid.Row="11" Grid.Column="1" 
+                            Date="{Binding DateEnd}"
+                            MinimumDate="{x:Static sys:DateTime.Now}"
+                            Format="MM/dd/yyyy" 
+                            HasBackground="true">
+                </renderer:CustomDatePicker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="12" Grid.Column="1" 
+                       Text="Invalid value for Date End. Must be later or equal with Date Start."
+                       IsVisible="{Binding DateEndError}"/>
+
+                <Label Grid.Row="13" Grid.Column="0"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Time End:"  />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <TimePicker Grid.Row="13" Grid.Column="1" 
+                            Time="{Binding TimeEnd}">
+                </TimePicker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="14" Grid.Column="1" 
+                       Text="Invalid value for Time End. Must be later than or equal to Time Start."
+                       IsVisible="{Binding TimeEndError}"/>
+
+                <Label Grid.Row="15" Grid.Column="0"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Application Type:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Picker Grid.Row="15" Grid.Column="1" 
+                        Title="Select an Application"
+                        ItemsSource="{Binding ApplicationTypesDDL}"
+                        ItemDisplayBinding="{Binding ApplicationName}"
+                        SelectedItem="{Binding SelectedApplication}">
+                </Picker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="16" Grid.Column="1" 
+                       Text="Application Type is required."
+                       IsVisible="{Binding ApplicationTypeError}"/>
+
+                <Label Grid.Row="17" Grid.Column="0"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Activity Details:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <StackLayout Grid.Row="18" 
+                             Grid.Column="0" 
+                             Grid.ColumnSpan="2"                            
+                             BackgroundColor="Gray" Padding="1">
+                    <Editor  
+                        FontSize="10"
+                        BackgroundColor="White"
+                        HeightRequest="68"
+                        Text="{Binding ActivityDetails}"
+                        MaxLength="1000">
+                    </Editor>
+
+                </StackLayout>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="17" Grid.Column="1" 
+                       Text="{Binding ActivityDetailsErrorMsg}"
+                       IsVisible="{Binding ActivityDetailsError}"/>
+
+                <Label Grid.Row="19" Grid.Column="0"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Root Cause Analysis:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <StackLayout Grid.Row="20" 
+                             Grid.Column="0" 
+                             Grid.ColumnSpan="2"                            
+                             BackgroundColor="Gray" Padding="1">
+
+                    <Editor 
+                        FontSize="10"
+                        BackgroundColor="White"
+                        HeightRequest="68"
+                        Text="{Binding RootCauseAnalysis}"
+                        MaxLength="1000">
+                    </Editor>
+
+                </StackLayout>
+
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="19" Grid.Column="1" 
+                       Text="{Binding RootCauseErrorMsg}"
+                       IsVisible="{Binding RootCauseAnalysisError}"/>
+
+            </Grid>
+
+        </StackLayout>
+    </ScrollView>
+</base:BaseContentPage>

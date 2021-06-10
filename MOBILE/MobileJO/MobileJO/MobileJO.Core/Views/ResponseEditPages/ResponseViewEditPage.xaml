@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+    xmlns:converter="clr-namespace:MobileJO.Core.Converters"
+    xmlns:selector="clr-namespace:MobileJO.Core.Selectors"
+    x:Class="MobileJO.Core.Views.ResponseEditPages.ResponseViewEditPage"
+    Title="Questionnaire View"
+    NavigationPage.HasBackButton="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="textQuestionTemplate" x:Name="dataTemplate">
+                <ViewCell>
+                    <StackLayout Margin="0,5,0,0">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding QuestionNo}"
+                                TextColor="Black"
+                                FontSize="12"/>
+                            <Label Text="{Binding Question}"
+                                TextColor="Black"
+                                FontSize="12"/>
+                        </StackLayout>
+                        <Entry Text="{Binding Answer.Value}"
+                            IsEnabled="{Binding Path=BindingContext.CanEditAnswer, Source={Reference listView}}"
+                            FontSize="12"
+                            TextChanged="Entry_TextChanged">
+                        </Entry>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="checkboxQuestionTemplate">
+                <ViewCell>
+                    <StackLayout Margin="0,5,0,0" VerticalOptions="StartAndExpand">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding QuestionNo}"
+                                TextColor="Black"
+                                FontSize="12"/>
+                            <Label Text="{Binding Question}"
+                                TextColor="Black"
+                                FontSize="12"/>
+                        </StackLayout>
+                        <ListView
+                            ItemsSource="{Binding Choices}"
+                            SeparatorColor="Transparent"
+                            IsPullToRefreshEnabled="False"
+                            RowHeight="40">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout VerticalOptions="StartAndExpand">
+                                            <input:CheckBox
+                                                Text="{Binding Label}"
+                                                Type="Check"
+                                                IsChecked="{Binding IsSelected}"
+                                                CheckChanged="CheckBox_CheckChanged"
+                                                IsEnabled="{Binding Path=BindingContext.CanEditAnswer, Source={Reference listView}}"/>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="radioQuestionTemplate">
+                <ViewCell>
+                    <StackLayout Margin="0,5,0,0" VerticalOptions="StartAndExpand">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding QuestionNo}"
+                                TextColor="Black"
+                                FontSize="12"/>
+                            <Label Text="{Binding Question}"
+                                TextColor="Black"
+                                FontSize="12"/>
+                        </StackLayout>
+                        <input:SelectionView
+                            SelectionType="RadioButton"
+                            Color="Black"
+                            ItemsSource="{Binding Choices}"
+                            SelectedItem="{Binding SelectedItem}"
+                            IsEnabled="{Binding Path=BindingContext.CanEditAnswer, Source={Reference listView}}"
+                            PropertyChanged="SelectionView_PropertyChangedEventHandler"
+                            HeightRequest="50"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="videoQuestionTemplate">
+                <ViewCell>
+                    <StackLayout Margin="0,5,0,0">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding QuestionNo}"
+                                TextColor="Black"
+                                FontSize="12"/>
+                            <Label Text="{Binding Question}"
+                                TextColor="Black"
+                                FontSize="12"/>
+                        </StackLayout>
+                        <StackLayout Margin="0,5,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                            <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                <Label
+                                    TextColor="Black"
+                                    FontSize="12"
+                                    Text="{Binding Answer.Value}"
+                                />
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                <ImageButton 
+                                    Source="camera.png"  
+                                    WidthRequest="30"
+                                    BackgroundColor="White"
+                                    Clicked="TakeAVideoButton_Clicked"
+                                    IsEnabled="{Binding Path=BindingContext.CanEditAnswer, Source={Reference listView}}"
+                                />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="imageQuestionTemplate">
+                <ViewCell>
+                    <StackLayout Margin="0,5,0,0">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding QuestionNo}"
+                                TextColor="Black"
+                                FontSize="12"/>
+                            <Label Text="{Binding Question}"
+                                TextColor="Black"
+                                FontSize="12"/>
+                        </StackLayout>
+                        <StackLayout Margin="0,5,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                <Label
+                                    TextColor="Black"
+                                    FontSize="12"
+                                    Text="{Binding Answer.Value}"
+                                />
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                <ImageButton 
+                                    Source="camera.png"  
+                                    WidthRequest="30"
+                                    BackgroundColor="White"
+                                    Clicked="TakeAPhotoButton_Clicked"
+                                    IsEnabled="{Binding Path=BindingContext.CanEditAnswer, Source={Reference listView}}"
+                                />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="sliderQuestionTemplate">
+                <ViewCell>
+                    <StackLayout Margin="0,5,0,0">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding QuestionNo}"
+                                TextColor="Black"
+                                FontSize="12"/>
+                            <Label Text="{Binding Question}"
+                                TextColor="Black"
+                                FontSize="12"/>
+                        </StackLayout>
+                        <Label Text="{Binding SliderProps.Minimum}"
+                            HorizontalOptions="Start"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center"
+                            VerticalOptions="EndAndExpand">
+                            <Label.Margin>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <On Platform="iOS" Value="15,0"/>
+                                    <On Platform="Android" Value="10,0"/>
+                                </OnPlatform>
+                            </Label.Margin>
+                        </Label>
+                        <Slider Maximum="{Binding SliderProps.Maximum, Converter={StaticResource stringToDoubleConverter}}"
+                            Minimum="{Binding SliderProps.Minimum, Converter={StaticResource stringToDoubleConverter}}"
+                            Value="{Binding Answer.Value, Converter={StaticResource stringToDoubleConverter}}"
+                            IsEnabled="{Binding Path=BindingContext.CanEditAnswer, Source={Reference listView}}"
+                            ThumbColor="Red"
+                            MinimumTrackColor="Red"
+                            MaximumTrackColor="Gray"
+                            ValueChanged="Slider_ValueChangedEventHandler"
+                            DragCompleted="Slider_DragCompletedEventHandler">
+                            <Slider.Margin>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <On Platform="iOS" Value="10,0" />
+                                </OnPlatform>
+                            </Slider.Margin>
+                        </Slider>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <StackLayout HorizontalOptions="StartAndExpand">
+                                    <Label Text="{Binding SliderProps.MinLabel}" FontSize="12"/>
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="EndAndExpand">
+                                    <Label Text="{Binding SliderProps.MaxLabel}" FontSize="12"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <selector:QuestionDataTemplateSelector
+                x:Key="questionDataTemplateSelector"
+                TextQuestionTemplate="{StaticResource textQuestionTemplate}"
+                CheckboxQuestionTemplate="{StaticResource checkboxQuestionTemplate}"
+                RadioQuestionTemplate="{StaticResource radioQuestionTemplate}"
+                VideoQuestionTemplate="{StaticResource videoQuestionTemplate}"
+                ImageQuestionTemplate="{StaticResource imageQuestionTemplate}"
+                SliderQuestionTemplate="{StaticResource sliderQuestionTemplate}"/>
+        </ResourceDictionary>
+        <converter:StringToDoubleConverter x:Key="stringToDoubleConverter"></converter:StringToDoubleConverter>
+    </ContentPage.Resources>
+    <StackLayout Margin="10,10">
+        <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
+            <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" WidthRequest="250">
+                <Label Text="{Binding Title}"
+                    FontSize="14"
+                    TextColor="Black"/>
+                <Label Text="{Binding Description}"
+                    FontSize="12"
+                    TextColor="Black"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="EndAndExpand">
+                <Label Text="{Binding Status}"
+                    FontSize="12"
+                    FontAttributes="Italic"
+                    TextColor="Gray"/>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                <Picker x:Name="CompanyName" 
+                    FontSize="12"
+                    Title="Select Company"
+                    ItemsSource="{Binding Company}"
+                    ItemDisplayBinding="{Binding Text}"
+                    SelectedItem="{Binding SelectedCompany}"
+                    IsEnabled="{Binding CanSelectCompany}">
+                </Picker>
+                <Picker x:Name="BranchName"
+                    FontSize="12"
+                    Title="Select Branch"
+                    ItemsSource="{Binding Branch}"
+                    ItemDisplayBinding="{Binding Text}"
+                    SelectedItem="{Binding SelectedBranch}"
+                    IsEnabled="{Binding CanSelectBranch}">
+                </Picker>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout Orientation="Vertical" Margin="10,10">
+            <ScrollView VerticalOptions="StartAndExpand" Orientation="Vertical">
+                <ListView x:Name="listView" Margin="10,0,0,0"
+                    ItemTemplate="{StaticResource questionDataTemplateSelector}"
+                    ItemsSource="{Binding Questions}"
+                    SeparatorColor="Transparent"
+                    BackgroundColor="Transparent"
+                    HasUnevenRows="True"
+                    IsPullToRefreshEnabled="True"
+                    RefreshCommand="{Binding RefreshList}"
+                    IsRefreshing="{Binding IsRefreshing}">
+                </ListView>
+            </ScrollView>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="Save" IsVisible="{Binding CanEditAnswer}" WidthRequest="150" Command="{Binding SaveSubmitResponse}" CommandParameter="1" Image="save.png" Padding="10,10,10,10" FontSize="14"></Button>
+                <Button Text="Submit" IsVisible="{Binding CanEditAnswer}" WidthRequest="150" Command="{Binding SaveSubmitResponse}" CommandParameter="2" Image="submit.png" Padding="10,10,10,10" FontSize="14"></Button>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</base:BaseContentPage>

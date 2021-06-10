@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    x:Class="MobileJO.Core.Views.CaseDetailsPage"
+    Title="Case Details">
+
+    <ScrollView>
+        <StackLayout 
+                Margin="{StaticResource PageMargin}"
+                Padding="5">
+        <Grid   x:Name="viewCaseGrid"
+                RowSpacing="1"
+                ColumnSpacing="1">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="70*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <Label  Text="Case #:"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"/>
+            <Label  Text="{Binding AssignedCaseModel.CaseNumber}"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    FontSize="Small"/>
+
+            <Label  Text="Status:"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"/>
+            <Label  Text="{Binding AssignedCaseModel.Status}"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    FontSize="Small"/>
+
+            <Label  Text="Application:"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"/>
+             <Label  Text="{Binding AssignedCaseModel.ApplicationType}"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    FontSize="Small"/>
+
+            <Label  Text="Subject:"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"/>
+            <Label  Text="{Binding AssignedCaseModel.CaseSubject}"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    FontSize="Small"/>
+
+            <Label  Text="Priority:"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"/>
+            <Label  Text="{Binding AssignedCaseModel.Priority}"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    FontSize="Small"/>
+
+            <Label  Text="Account Name:"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"/>
+            <Label  Text="{Binding AssignedCaseModel.AccountName}"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    FontSize="Small"/>
+
+            <Label  Text=""
+                    Grid.Row="6"
+                    Grid.Column="0"/>
+            
+            <Label  Text="Description:"
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"/>
+            <Label Text="{Binding AssignedCaseModel.Description}"
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    FontSize="Small"
+                    IsEnabled="False"/>
+            
+            <Label  Text=""
+                    Grid.Row="8"
+                    Grid.Column="0"/>
+
+
+            <Label  Text="Assigned To:"
+                    Grid.Row="9"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"/>
+            <Label  Text="{Binding AssignedCaseModel.AssignedTo}"
+                    Grid.Row="9"
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    FontSize="Small"/>
+
+            <Label  Text="Date Created:"
+                    Grid.Row="10"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"/>
+            <Label  Text="{Binding AssignedCaseModel.CreatedBy}"
+                    Grid.Row="10"
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    FontSize="Small"/>
+
+            <Label  Text="Date Updated:"
+                    Grid.Row="11"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"/>
+            <Label  Text="{Binding AssignedCaseModel.ModifiedBy}"
+                    Grid.Row="11"
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    FontSize="Small"/>
+
+        </Grid>
+    </StackLayout>
+    </ScrollView>
+
+</base:BaseContentPage>

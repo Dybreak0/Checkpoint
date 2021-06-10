@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MobileJO.Core.Views.ClientSignaturePage"
+    xmlns:res="clr-namespace:MobileJO.Core.Resources;assembly=MobileJO.Core"
+    xmlns:components="clr-namespace:MobileJO.Core.Components"
+    xmlns:renderer="clr-namespace:MobileJO.Core.CustomRenderer;assembly=MobileJO.Core"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:controls="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
+    NavigationPage.HasBackButton="False"
+    Title="Signature">
+
+    <ContentPage.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="9"/>
+            <Setter Property="WidthRequest" Value="80" />
+            <Setter Property="HeightRequest" Value="30" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+    </ContentPage.Resources>
+    
+    <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Margin="{StaticResource PageMargin}">
+        <controls:SignaturePadView  x:Name="signatureView"
+	                                StrokeWidth="3"
+	                                StrokeColor="Black"
+	                                BackgroundColor="White"
+                                    HeightRequest="550"
+                                    WidthRequest="250">
+        </controls:SignaturePadView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Back" Command="{Binding CloseCommand}"/>
+            <Button Text="Confirm" Clicked="SaveSignatureButton_Clicked"/>
+        </StackLayout>
+    </StackLayout>
+
+</base:BaseContentPage>

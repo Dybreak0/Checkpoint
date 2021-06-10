@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage 
+             xmlns:base="clr-namespace:MobileJO.Core.Base"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileJO.Core.Views.AssignedCases.SearchFilterPage"
+             Title="Filter Assigned Cases"
+             NavigationPage.HasBackButton="False">
+    
+    <base:BaseContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Cancel" 
+            Order="Default"
+            Text="Cancel" 
+            Command="{Binding Close}"/>
+        <ToolbarItem 
+            Name="Reset" 
+            Order="Primary"
+            Text="Reset" 
+            Command="{Binding Reset}"/>
+    </base:BaseContentPage.ToolbarItems>
+
+    <StackLayout VerticalOptions="Center" 
+                 HorizontalOptions="Center"
+                 Margin="{StaticResource PageMargin}"
+                 Padding="25">
+        
+        <Grid   RowSpacing="5"
+                ColumnSpacing="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <Label  Text="Case #:"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"/>
+            <Entry  Text="{Binding CaseNumber}"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    FontSize="Small"
+                    Keyboard="Numeric"/>
+
+            <Label  Text="Status:"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"/>
+            <Picker ItemsSource="{Binding CaseStatus}"
+                    SelectedItem="{Binding SelectedCaseStatus, Mode=TwoWay}"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    FontSize="Small"/>
+
+            <Label  Text="Application:"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"/>
+            <Picker ItemsSource="{Binding ApplicationType}"
+                    SelectedItem="{Binding SelectedApplicationType, Mode=TwoWay}"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    FontSize="Small"/>
+        </Grid>
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Fill"
+                     Spacing="10">
+            <Button  Text="Search" 
+                     HorizontalOptions="FillAndExpand"
+                     Command="{Binding GoToAssignedCasesList}"></Button>
+        </StackLayout>
+    </StackLayout>
+   
+</base:BaseContentPage>

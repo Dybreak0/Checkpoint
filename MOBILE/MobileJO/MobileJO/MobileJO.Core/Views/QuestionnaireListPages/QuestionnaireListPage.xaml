@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MobileJO.Core.Views.QuestionnaireListPages.QuestionnaireListPage"
+    x:Name="QuestionnaireList"
+    NavigationPage.HasBackButton="False"
+    Title="Templates">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="sync.png" Order="Primary"  Command="{Binding SyncCommand}"/>
+        <ToolbarItem Icon="magnifying_glass.png" Order="Primary"  Command="{Binding GoToSearchQuestionnairePageCommand}"/>
+        <ToolbarItem Icon="settings.png" Order="Primary"  Command="{Binding GoToSettings}"/>
+        <ToolbarItem Text="Logout" Command="{Binding Logout}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding _questionnaire}"
+                SeparatorColor="LightGray"
+                RowHeight="150"
+                IsVisible="{Binding HasRecords}"
+                SelectedItem="{Binding SelectedQuestionnaire}"
+                CachingStrategy="RecycleElement"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshList}"
+                IsRefreshing="{Binding IsRefreshing}">
+                <ListView.Header>
+                    <Label Text="No records found."
+                        FontSize="12"
+                        IsVisible="{Binding ShowError}"
+                        Style="{DynamicResource ListItemDetailTextStyle}"
+                        HorizontalTextAlignment="Center"/>
+                </ListView.Header>
+                <ListView.Footer>
+                    <Button Text="Load More"
+                        Command="{Binding LoadMore}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        IsVisible="{Binding CanLoadMoreData}"
+                        BackgroundColor="LightGray"></Button>
+                </ListView.Footer>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="6,6" Padding="6" Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                <StackLayout WidthRequest="250">
+                                    <Label Text="{Binding Title}"
+                                        TextColor="Black"
+                                        FontAttributes="Bold"
+                                        FontSize="14"/>
+                                    <Label Text="{Binding Description}"
+                                        TextColor="Gray"
+                                        FontSize="12"/>
+                                    <Label Text="{Binding CompanyBranchNames}"
+                                        TextColor="Gray"
+                                        FontSize="12"/>
+                                    <Label Text="{Binding CreatedDate}"
+                                        TextColor="Gray"
+                                        FontSize="12"/>
+                                    
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="EndAndExpand"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="StartAndExpand">
+                                    <Label Text="&#x2023;"
+                                        FontSize="60"
+                                        TextColor="Gray"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</base:BaseContentPage>

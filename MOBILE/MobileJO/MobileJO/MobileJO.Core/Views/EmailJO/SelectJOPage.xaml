@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage 
+            xmlns:base="clr-namespace:MobileJO.Core.Base"
+            xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+            x:Class="MobileJO.Core.Views.EmailJO.SelectJOPage"
+            Title="Select JO">
+    <!--<base:BaseContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Select" 
+            Order="Primary"
+            Text="{Binding SelectToggle}"
+            Command="{Binding ToggleSelectAll}"
+            Clicked="Select_Clicked"    />
+    </base:BaseContentPage.ToolbarItems>-->
+    <StackLayout>
+        <ListView 
+            ItemsSource="{Binding JOTaggedCase}"
+            RowHeight="90"
+            SelectionMode="None"
+            CachingStrategy="RecycleElement">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="6,0" 
+                                     Padding="10" 
+                                     Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal">
+                                <Label   Text="{Binding Item.job_order_no}" 
+                                        Style="{DynamicResource ListItemTextStyle}" 
+                                        FontAttributes="Bold"/>
+                                <input:CheckBox 
+                                                Type="Check"
+                                                IsChecked="{Binding IsSelected}"
+                                                IsDisabled="{Binding IsSelectAll}"
+                                                HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label   Text="{Binding Item.job_order_subject}" 
+                                         Style="{DynamicResource ListItemDetailTextStyle}"/>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+        
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Fill"
+                     Spacing="10" 
+                     Margin="6,0"
+                     Padding="10">
+            <Button  Text="Next" 
+                     HorizontalOptions="FillAndExpand"
+                     Padding="5"
+                     Command="{Binding GoTaggedCasesPageCommand}"></Button>
+        </StackLayout>
+        
+    </StackLayout>
+
+</base:BaseContentPage>

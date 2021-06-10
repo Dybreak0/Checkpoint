@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    x:Class="MobileJO.Core.Views.CasesSelectedPage"
+    Title="Cases Selected">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Next" Command="{Binding GoToLastPageCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout Orientation="Vertical" Margin="{StaticResource PageMargin}">
+        <Entry Grid.Row="1" Grid.Column="1"
+               Placeholder="Input tags"
+                       x:Name="jobOrderSubjectEntry"
+                       Text="{Binding JobOrderSubject}"
+                       MaxLength="32">
+        </Entry>
+    </StackLayout>
+
+</base:BaseContentPage>

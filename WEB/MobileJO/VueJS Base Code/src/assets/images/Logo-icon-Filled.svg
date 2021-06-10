@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="77.54" height="77.54" viewBox="0 0 77.54 77.54">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_11" data-name="Ellipse 11" cx="38.769" cy="38.769" r="38.769"/>
+    </clipPath>
+    <clipPath id="clip-Logo-icon-Filled">
+      <rect width="77.54" height="77.54"/>
+    </clipPath>
+  </defs>
+  <g id="Logo-icon-Filled" clip-path="url(#clip-Logo-icon-Filled)">
+    <rect width="77.54" height="77.54" fill="#fff"/>
+    <g id="logo-icon-03" transform="translate(-483.417 -0.751)">
+      <circle id="Ellipse_10" data-name="Ellipse 10" cx="38.769" cy="38.769" r="38.769" transform="translate(483.417 0.751)" fill="#ef3024"/>
+      <g id="Group_9" data-name="Group 9" transform="translate(483.417 0.751)">
+        <g id="Group_8" data-name="Group 8" clip-path="url(#clip-path)">
+          <path id="Path_10" data-name="Path 10" d="M509.115,92.85H520.34v3.742H509.115Z" transform="translate(-498.82 -55.952)" fill="#fff"/>
+          <path id="Path_11" data-name="Path 11" d="M495.237,66.256H484.714v1.871A1.87,1.87,0,0,1,482.844,70H467.877a1.871,1.871,0,0,1-1.871-1.871V66.256H455.484a5.606,5.606,0,0,1-5.324-3.837l-6.725-20.182V83.092a5.618,5.618,0,0,0,5.612,5.612h52.629a5.619,5.619,0,0,0,5.612-5.612V42.24L500.56,62.42A5.605,5.605,0,0,1,495.237,66.256Z" transform="translate(-459.452 -25.617)" fill="#fff"/>
+          <path id="Path_12" data-name="Path 12" d="M451.467,36.817l7.055,21.17a1.871,1.871,0,0,0,1.776,1.278h10.523V57.4a1.87,1.87,0,0,1,1.871-1.87h14.966a1.87,1.87,0,0,1,1.87,1.87v1.87h10.523a1.869,1.869,0,0,0,1.775-1.278l7.056-21.17Z" transform="translate(-464.267 -22.368)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

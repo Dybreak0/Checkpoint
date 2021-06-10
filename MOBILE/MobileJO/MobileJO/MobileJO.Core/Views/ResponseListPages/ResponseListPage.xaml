@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MobileJO.Core.Views.ResponseListPages.ResponseListPage"
+    x:Name="ResponseList"
+    Title="Questionnaires"
+    NavigationPage.HasBackButton="True">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView VerticalOptions="FillAndExpand" Orientation="Vertical">
+                <StackLayout>
+                    <ListView ItemsSource="{Binding _response}"
+                        SeparatorColor="LightGray"
+                        IsVisible="{Binding HasRecords}"
+                        SelectedItem="{Binding SelectedResponse}"
+                        RowHeight="100"
+                        CachingStrategy="RecycleElement"
+                        IsPullToRefreshEnabled="True"
+                        RefreshCommand="{Binding RefreshList}"
+                        IsRefreshing="{Binding IsRefreshing}">
+                        <ListView.Header>
+                            <Label Text="No records found."
+                                FontSize="12"
+                                IsVisible="{Binding ShowError}"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                HorizontalTextAlignment="Center"/>
+                        </ListView.Header>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Margin="6,6" Padding="6" Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                        <StackLayout>
+                                            <Label Text="{Binding Title}"
+                                                TextColor="Black"
+                                                FontAttributes="Bold"
+                                                FontSize="14"/>
+                                            <Label Text="{Binding Description}"
+                                                TextColor="Gray"
+                                                FontSize="12"/>
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="EndAndExpand"
+                                            Orientation="Vertical"
+                                            VerticalOptions="StartAndExpand">
+                                            <Label Text="{Binding DateSubmitted}"
+                                                TextColor="Gray"
+                                                FontAttributes="Italic"
+                                                FontSize="12"/>
+                                            <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" VerticalOptions="StartAndExpand" Padding="0,-30,0,0">
+                                                <Label Text="{Binding StatusText}"
+                                                    TextColor="Gray"
+                                                    FontAttributes="Bold"
+                                                    FontSize="12"/>
+                                                <Label Text="&#x2022;"
+                                                    TextColor="{Binding Color}"
+                                                    FontSize="60"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout BackgroundColor="Black" HorizontalOptions="FillAndExpand">
+                <Button Text="{Binding FillUpBtnText}" Command="{Binding GoToFillUp}" Image="pencil.png" HorizontalOptions="FillAndExpand" Padding="30, 10, 10, 10"
+                    IsEnabled="{Binding CanFillUpQuestionnaire}">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</base:BaseContentPage>

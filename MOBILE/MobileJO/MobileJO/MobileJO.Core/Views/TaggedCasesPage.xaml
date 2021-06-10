@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+            xmlns:base="clr-namespace:MobileJO.Core.Base"
+            xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileJO.Core.Views.TaggedCasesPage"
+             Title="Tagged Cases">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="20" Padding="10">
+                <Label Text="Case #"
+                       TextColor="Gray"
+                       WidthRequest="130"
+                       FontAttributes="Bold"/>
+                <Label Text="Subject"
+                       TextColor="Gray"
+                       FontAttributes="Bold"/>
+            </StackLayout>   
+            <ListView ItemsSource="{Binding _taggedCases}"  
+                      SeparatorColor="LightGray" 
+                      HasUnevenRows="False"
+                      SelectedItem="{Binding SelectedCase, Mode=TwoWay}"
+                      RowHeight="90"
+                      CachingStrategy="RecycleElement"
+                      IsPullToRefreshEnabled="False">
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <ViewCell> 
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Padding="10, 10, 10, 0">
+                                <StackLayout Spacing="20" VerticalOptions="Center">
+                                    <Label  Text="{Binding CaseNumber}"
+                                            TextColor="Black"
+                                            WidthRequest="80"
+                                            FontAttributes="Bold"/>
+                                </StackLayout>
+                                <StackLayout Orientation ="Vertical" VerticalOptions="Center" 
+                                                 Spacing="15">
+                                    <Label Text="{Binding ApplicationType}"
+                                                 TextColor="Gray" 
+                                                 FontAttributes="Bold"/>
+                                    <Label Text = "{Binding CaseSubject}"
+                                                 TextColor="Gray"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
+       </StackLayout>
+    </ContentPage.Content>
+</base:BaseContentPage>

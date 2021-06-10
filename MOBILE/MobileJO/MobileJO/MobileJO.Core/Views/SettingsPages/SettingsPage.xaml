@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage 
+                xmlns:base="clr-namespace:MobileJO.Core.Base"
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="MobileJO.Core.Views.SettingsPages.SettingsPage"
+                NavigationPage.HasBackButton="True">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Start" WidthRequest="325">
+            <Label 
+                Text="Profile"
+                HorizontalTextAlignment="Center"
+                TextColor="White"
+                FontAttributes="Bold"
+                WidthRequest="300"
+                FontSize="Medium"
+            />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Resources>
+        <Style TargetType="ImageButton">
+            <Setter Property="WidthRequest" Value="120"/>
+            <Setter Property="HeightRequest" Value="120"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="BackgroundColor" Value="#0000"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+    </ContentPage.Resources>
+    <base:BaseContentPage.ToolbarItems>
+        <ToolbarItem Text="Logout" Command="{Binding Logout}"/>
+    </base:BaseContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="5,5,5,5" HeightRequest="90">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                    <Image
+                        Source="user.png"
+                        WidthRequest="100"
+                        />
+                    <StackLayout Orientation="Vertical" Padding="5,5,5,5">
+                        <Label 
+                        Text="John Doe"
+                        TextColor="DarkGray"
+                        FontSize="Default"
+                        FontAttributes="Bold"/>
+                        <Label 
+                        Text="johndoe@gmail.com"
+                        FontAttributes="None"
+                        TextColor="DarkGray"
+                        FontSize="Small"/>
+                        <Label 
+                        Text="099999999"
+                        TextColor="DarkGray"
+                        FontAttributes="None"
+                        FontSize="Small"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                    <ImageButton
+                        HeightRequest="30"
+                        Source="arrowBack.png"
+                    />
+                </StackLayout>
+            </StackLayout>
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="DarkGray"/>
+
+            <StackLayout
+                HeightRequest="70"
+            />
+
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="DarkGray"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="5,0,5,5" HeightRequest="40">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                    <Image
+                        Source="info.png"
+                        WidthRequest="30"
+                        />
+                    <Label 
+                        Text="About Us"
+                        HorizontalOptions="Center"
+                        TextColor="DarkGray"
+                        FontSize="Default"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                    <ImageButton
+                        HeightRequest="30"
+                        Source="arrowBack.png"
+                    />
+                </StackLayout>
+            </StackLayout>
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="DarkGray"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="5,0,5,5" HeightRequest="40">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                    <Image
+                        Source="question.png"
+                        WidthRequest="30"
+                        />
+                    <Label 
+                        Text="FAQs"
+                        HorizontalOptions="Center"
+                        TextColor="DarkGray"
+                        FontSize="Default"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                    <ImageButton
+                        HeightRequest="30"
+                        Source="arrowBack.png"
+                        HorizontalOptions="End"
+                    />
+                </StackLayout>
+            </StackLayout>
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="DarkGray"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="5,0,5,5" HeightRequest="40">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                    <Image
+                        Source="lock.png"
+                        WidthRequest="30"
+                        />
+                    <Label 
+                        Text="Privacy Policy"
+                        HorizontalOptions="Center"
+                        TextColor="DarkGray"
+                        FontSize="Default"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                    <ImageButton
+                        Command="{Binding GoToPrivacyPolicy}"
+                        HeightRequest="30"
+                        Source="arrowBack.png"
+                    />
+                </StackLayout>
+            </StackLayout>
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="DarkGray"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="5,0,5,5" HeightRequest="40">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                    <Image
+                        Source="paper.png"
+                        WidthRequest="30"
+                        />
+                    <Label 
+                        Text="Terms And Conditions"
+                        HorizontalOptions="Center"
+                        TextColor="DarkGray"
+                        FontSize="Default"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                    <ImageButton
+                        Command="{Binding GoToTermsAndCondition}"
+                        HeightRequest="30"
+                        Source="arrowBack.png"
+                        HorizontalOptions="End"
+                    />
+                </StackLayout>
+            </StackLayout>
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="DarkGray"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="5,0,5,5" HeightRequest="40">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                    <Image
+                        Source="phone.png"
+                        WidthRequest="30"
+                        />
+                    <Label 
+                        Text="Contact Us"
+                        HorizontalOptions="Center"
+                        TextColor="DarkGray"
+                        FontSize="Default"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                    <ImageButton
+                        HeightRequest="30"
+                        Source="arrowBack.png"
+                        HorizontalOptions="End"
+                    />
+                </StackLayout>
+            </StackLayout>
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="DarkGray"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</base:BaseContentPage>

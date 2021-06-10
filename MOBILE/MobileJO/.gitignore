@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/packages
+/MobileJO/MobileJO.Core/bin
+/MobileJO/MobileJO.Core/obj
+/MobileJO/MobileJO.Droid/bin
+/MobileJO/MobileJO.Droid/obj
+/MobileJO/MobileJO.iOS/bin
+/MobileJO/MobileJO.iOS/obj
+/MobileJO/MobileJO.Droid/Resources/Resource.Designer.cs

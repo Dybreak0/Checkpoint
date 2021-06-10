@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MobileJO.Core.Views.EditJOSecondPage"
+    xmlns:res="clr-namespace:MobileJO.Core.Resources;assembly=MobileJO.Core"
+    xmlns:components="clr-namespace:MobileJO.Core.Components"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    Title="Job Order Form">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Next" Command="{Binding GoToCaseSelectedCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout Margin="{StaticResource PageMargin}">
+            <StackLayout>
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120"></RowDefinition>
+                        <RowDefinition Height="120"></RowDefinition>
+                        <RowDefinition Height="120"></RowDefinition>
+                        <RowDefinition Height="120"></RowDefinition>
+
+                    </Grid.RowDefinitions>
+
+                    <StackLayout 
+                        Grid.Row="0"
+                        Orientation="Vertical">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="70"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Label Grid.Column="0"
+                                   FontAttributes="Bold">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Next Step:" />
+                                        <Span Text="*" TextColor="Red"  />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label 
+                                Grid.Column="1"
+                                Style="{StaticResource errorStyle}"                             
+                                Text="{Binding NextStepErrorMsg}"
+                                IsVisible="{Binding NextStepError}"/>
+                        
+
+                            <StackLayout BackgroundColor="Gray" 
+                                         Padding="1" 
+                                         Grid.Row="1"
+                                         Grid.ColumnSpan="2">
+                                
+                                    <Editor 
+                                        FontSize="10"
+                                        BackgroundColor="White"
+                                        HeightRequest="68"
+                                        Text="{Binding NextStep}"
+                                        MaxLength="1000"></Editor>
+                                
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+
+                    <StackLayout 
+                        Grid.Row="1"
+                        Orientation="Vertical">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="70"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Label Grid.Column="0"
+                                   FontAttributes="Bold">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Preventive Action:" />
+                                        <Span Text="*" TextColor="Red"  />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label 
+                                Grid.Column="1"
+                                Style="{StaticResource errorStyle}"
+                                Text="{Binding PreventiveActionErrorMsg}"
+                                IsVisible="{Binding PreventiveActionError}"/>
+                        
+
+                            <StackLayout BackgroundColor="Gray" 
+                                         Padding="1"
+                                         Grid.Row="1"
+                                         Grid.ColumnSpan="2">
+                                <Editor 
+                                    FontSize="10"
+                                    BackgroundColor="White"
+                                    HeightRequest="68"
+                                    Text="{Binding PreventiveAction}"
+                                    MaxLength="1000"></Editor>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+
+                    <StackLayout 
+                        Grid.Row="2"
+                        Orientation="Vertical">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="70"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Label Grid.Column="0"
+                                   FontAttributes="Bold">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Remarks:" />
+                                        <Span Text="*" TextColor="Red"  />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label
+                            Grid.Column="1" 
+                            Style="{StaticResource errorStyle}"                           
+                            Text="{Binding RemarksErrorMsg}"
+                            IsVisible="{Binding RemarksError}"/>
+                        
+                            <StackLayout BackgroundColor="Gray" 
+                                         Padding="1"
+                                         Grid.Row="1"
+                                         Grid.ColumnSpan="2">
+                                <Editor 
+                                    FontSize="10"
+                                    BackgroundColor="White"
+                                    HeightRequest="68"
+                                    Text="{Binding Remarks}"
+                                    MaxLength="1000"></Editor>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+
+                    <StackLayout 
+                        Grid.Row="3"
+                        Orientation="Vertical">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="70"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Label Grid.Column="0"
+                                   FontAttributes="Bold">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Attendees:" />
+                                        <Span Text="*" TextColor="Red"  />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label 
+                                    Grid.Column="1"
+                                    Style="{StaticResource errorStyle}"                                
+                                    Text="{Binding AttendeesErrorMsg}"
+                                    IsVisible="{Binding AttendeesError}"/>
+                        
+                            <StackLayout BackgroundColor="Gray" 
+                                         Padding="1"
+                                         Grid.Row="1"
+                                         Grid.ColumnSpan="2">
+                                <Editor 
+                                    FontSize="10"
+                                    BackgroundColor="White"
+                                    HeightRequest="68"
+                                    Text="{Binding Attendees}"
+                                    MaxLength="1000"></Editor>
+                            </StackLayout>
+                        </Grid>
+
+                    </StackLayout>
+
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</base:BaseContentPage>

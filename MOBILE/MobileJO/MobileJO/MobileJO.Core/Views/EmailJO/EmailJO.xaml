@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+                xmlns:base="clr-namespace:MobileJO.Core.Base"
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+                x:Class="MobileJO.Core.Views.EmailJO.EmailJO"
+                Title="Email JO Form"
+                NavigationPage.HasBackButton="False">
+
+    <base:BaseContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Cancel" 
+            Order="Primary"
+            Text="Cancel"
+            Command="{Binding Cancel}"/>
+    </base:BaseContentPage.ToolbarItems>
+    <StackLayout Margin="{StaticResource PageMargin}"
+                 Padding="5">
+
+        <StackLayout HorizontalOptions="StartAndExpand">
+            
+            <Grid x:Name="gridFirstPart" 
+                  RowSpacing="1"
+                  ColumnSpacing="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="55*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Label 
+                   Text="Job Order #:"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   FontAttributes="Bold"
+                   FontSize="Small"
+                   VerticalOptions="EndAndExpand"/>
+                <Editor 
+                   Text="{Binding JobOrderNos}"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   IsEnabled="False"
+                   FontSize="Small"
+                   AutoSize="TextChanges"
+                   Grid.ColumnSpan="2"/>
+
+                <Label 
+                   Text="Use Default Address:"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   FontAttributes="Bold"
+                   FontSize="Small"/>
+                <Switch 
+                    x:Name="useDefaultAddress"
+                    Grid.Row="2" 
+                    Grid.Column="1"
+                    IsToggled="{Binding UseDefaultEmailAddress, Mode=TwoWay}" 
+                    Toggled="UseDefaultAddress_Toggled" 
+                    HorizontalOptions="EndAndExpand"/>
+                
+            </Grid>
+
+        </StackLayout>
+
+        <StackLayout x:Name="emailRecipient"
+                     IsVisible="True">
+            <Grid x:Name="emailSecondPart">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="90*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+
+                <Label x:Name="ToRecipientText" Text=""/>
+                
+                <Label 
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   FontSize="Small">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="To:"/>
+                            <Span Text="*" 
+                                  TextColor="Red"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Entry 
+                   x:Name="ToRecipient"
+                   Text="{Binding RecipientTo}"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   IsEnabled="True"
+                   FontSize="Small"
+                   MaxLength="1000"
+                   Keyboard="Email">
+                </Entry>
+
+                <Label Text="Cc:"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   FontSize="Small"/>
+                <Entry Text="{Binding RecipientCc}"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   IsEnabled="True"
+                   FontSize="Small"
+                   MaxLength="1000"
+                   Keyboard="Email"/>
+
+                <Label Text="Bcc:"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   FontSize="Small"/>
+                <Entry Text="{Binding RecipientBcc}"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   IsEnabled="True"
+                   FontSize="Small"
+                   MaxLength="1000"
+                   Keyboard="Email"/>
+            </Grid>
+
+            
+        </StackLayout>
+
+        <StackLayout>
+            <Grid x:Name="gridConforme">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="55*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                
+                <Label 
+                   Text="Support Type:"
+                   Grid.Row="0"
+                   Grid.Column="0"                   
+                   FontSize="Small"
+                   FontAttributes="Bold"/>
+                <StackLayout 
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Grid.Row="0"
+                    Grid.Column="1">
+
+                    <input:RadioButtonGroupView>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45*"/>
+                                <ColumnDefinition Width="55*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+
+                            <input:RadioButton 
+                                           IsChecked="True"
+                                           Text="Onsite" 
+                                           TextFontSize="12" 
+                                           Grid.Column="0" 
+                                           Grid.Row="0"
+                                           HorizontalOptions="Start"/>
+
+                            <input:RadioButton 
+                                           IsChecked="False"
+                                           Text="Offsite" 
+                                           TextFontSize="12" 
+                                           Grid.Column="1" 
+                                           Grid.Row="0"
+                                           HorizontalOptions="Start"/>
+                        </Grid>
+
+                    </input:RadioButtonGroupView>
+
+                </StackLayout>
+                
+                <Label                     
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   FontSize="Small"
+                   FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Conforme Slip #:"/>
+                            <Span Text="*" 
+                                  TextColor="Red"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                
+                <Entry Text="{Binding ConformeSlip, Mode=TwoWay}"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   IsEnabled="True"
+                   FontSize="Small"
+                   MaxLength="64"/>
+            </Grid>
+            
+        </StackLayout>
+
+        <StackLayout Padding="0, 20, 0, 0">
+            <Button Text="Send" Command="{Binding ConfirmEmailSending}">
+                
+            </Button>
+        </StackLayout>
+    
+    </StackLayout>
+</base:BaseContentPage>

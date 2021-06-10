@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MobileJO.Core.Views.JobOrderPage"
+    Title="Job Order Details"
+    NavigationPage.HasBackButton="False">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Back" Order="Primary"  Priority="1" Command="{Binding GoToListPage}"/>
+        <ToolbarItem Name="Next" Order="Primary"  Priority="1" Command="{Binding GoToSecondPage}"/>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Orientation="Vertical" Padding="10, 10, 10, 10" >
+        <StackLayout VerticalOptions="StartAndExpand">
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout>
+                        <Grid ColumnSpacing="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*"/>
+                                <ColumnDefinition Width="60*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+
+                            <Label  
+                            Text="Job Order Number:"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="12"/>
+                            <Label 
+                            Text="{Binding JobOrderModel.JobOrderNumber}"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            IsEnabled="False"
+                            FontSize="12"
+                            TextColor="DarkGray"/>
+                            <Label  
+                            Text="Job Order Subject:"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="12"
+                            />
+                            <Label 
+                            Text="{Binding JobOrderModel.JobOrderSubject}"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            IsEnabled="False"
+                            FontSize="12"
+                            VerticalOptions="CenterAndExpand"
+                            TextColor="DarkGray"/>
+                            <Label  
+                            Text="Branch:"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="12"/>
+                            <Label  
+                            Text="{Binding JobOrderModel.Branch}"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            IsEnabled="False"
+                            FontSize="12"
+                            TextColor="DarkGray"/>
+                            <Label  
+                            Text="Client name:"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="12"/>
+                            <Label  
+                            Text="{Binding JobOrderModel.AccountName}"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            IsEnabled="False"
+                            FontSize="12"
+                            TextColor="DarkGray"/>
+                            <Label  
+                            Text="Date Start:"
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="12"/>
+                            <Label  
+                            Text="{Binding DateStart}"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            IsEnabled="False"
+                            FontSize="12"
+                            TextColor="DarkGray"/>
+                            <Label  
+                            Text="Time Start:"
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="12"/>
+                            <Label 
+                            Text="{Binding TimeStart}"
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            IsEnabled="False"
+                            FontSize="12"
+                            TextColor="DarkGray"/>
+                            <Label  
+                            Text="Date End:"
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="12"/>
+                            <Label  
+                            Text="{Binding DateEnd}"
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            IsEnabled="False"
+                            FontSize="12"
+                            TextColor="DarkGray"/>
+                            <Label  
+                            Text="Time End:"
+                            Grid.Row="7"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="12"/>
+                            <Label 
+                            Text="{Binding TimeEnd}"
+                            Grid.Row="7"
+                            Grid.Column="1"
+                            IsEnabled="False"
+                            FontSize="12"
+                            TextColor="DarkGray"/>
+                            <Label  
+                            Text="Application Type:"
+                            Grid.Row="8"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="12"
+                            />
+                            <Label  
+                            Text="{Binding JobOrderModel.ApplicationName}"
+                            Grid.Row="8"
+                            Grid.Column="1"
+                            IsEnabled="False"
+                            FontSize="12"
+                            TextColor="DarkGray"/>
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout>
+                        <Grid RowSpacing=".5" ColumnSpacing="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label  Text="Activity Details:"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                FontSize="12"
+                                VerticalTextAlignment="Start"/>
+                            <StackLayout BackgroundColor="Gray" Padding="1" Grid.Row="1" Grid.Column="0">
+                                <Editor 
+                                    FontSize="12"
+                                    BackgroundColor="White"
+                                    Text="{Binding JobOrderModel.ActivityDetails}"
+                                    IsEnabled="False"
+                                    TextColor="DarkGray"
+                                    AutoSize="TextChanges"></Editor>
+                            </StackLayout>
+
+                            <Label  Text="Root Cause Analysis:"
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                FontSize="12"
+                                VerticalTextAlignment ="Start"/>
+
+                            <StackLayout BackgroundColor="Gray" Padding="1" Grid.Row="3" Grid.Column="0">
+                                <Editor 
+                                        FontSize="12"
+                                        BackgroundColor="White"
+                                        Text="{Binding JobOrderModel.RootCauseAnalysis}"
+                                        IsEnabled="False"
+                                        TextColor="DarkGray"
+                                        AutoSize="TextChanges"></Editor>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                    <Grid RowSpacing="1" ColumnSpacing="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40*"/>
+                            <ColumnDefinition Width="60*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Text="Assigned Cases"  
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    HeightRequest="40"
+                                    FontSize="12"
+                                    BackgroundColor="Red"
+                                    Command="{Binding TaggedCases}"/>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+        <StackLayout VerticalOptions="End" HeightRequest="40">
+            <Grid RowSpacing="1" ColumnSpacing="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button  Grid.Row="0" Grid.Column="0" Text="Edit" BackgroundColor="Red" Command="{Binding EditJobOrderCommand}" IsEnabled="{Binding EnableEdit}" FontSize="12"  HeightRequest="40" TextColor="White"/>
+                <Button  Grid.Row="0" Grid.Column="1" Text="Revert" BackgroundColor="Red" Command="{Binding RevertJobOrder}" IsEnabled="{Binding EnableRevert}" FontSize="12" HeightRequest="40" TextColor="White"/>
+                <Button  Grid.Row="0" Grid.Column="2" Text="Email JO" BackgroundColor="Red" Command="{Binding EmailJobOrderCommand}" IsEnabled="{Binding EnableEmailJO}" FontSize="12" HeightRequest="40" TextColor="White"/>
+                <Button  Grid.Row="0" Grid.Column="3" Text="Delete" BackgroundColor="Red" Command="{Binding DeleteJobOrder}" IsEnabled="{Binding EnableDelete}" FontSize="12" HeightRequest="40" TextColor="White"/>
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</base:BaseContentPage>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage 
+             xmlns:base="clr-namespace:MobileJO.Core.Base"         
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileJO.Core.Views.SearchPage"
+             Title="Search Filter"
+             >
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Padding="40" Orientation="Vertical" Spacing="20">
+            <Label Text="Job order #"/>
+            <Entry MaxLength="9"  Text="{Binding JobOrderNumber}"/>
+            <Label Text="Status"/>
+            <Picker x:Name="Status" HorizontalOptions="FillAndExpand"
+                    Title="Pending"
+                    FontSize="Small"
+                    ItemsSource="{Binding JobOrderStatus}"
+                    SelectedItem="{Binding SelectedJobOrderStatus}">
+            </Picker>
+            <Label Text="Application Type"/>
+            <Picker x:Name="ApplicationType" HorizontalOptions="FillAndExpand"
+                    Title="All"
+                    FontSize="Small"
+                    ItemsSource="{Binding ApplicationType}"
+                    SelectedItem="{Binding SelectedApplicationType}"
+                    >
+            </Picker>
+            <StackLayout>
+                <Button Text="Search" Command="{Binding SearchFilter}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</base:BaseContentPage>

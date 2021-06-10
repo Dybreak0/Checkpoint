@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvx:MvxFormsApplication 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="MobileJO.Core.FormsApp"
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
+    xmlns:renderer="clr-namespace:MobileJO.Core.CustomRenderer;assembly=MobileJO.Core"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms">
+	<mvx:MvxFormsApplication.Resources>
+		<ResourceDictionary>
+            <Color x:Key="Primary">#EF3024</Color>
+            <Color x:Key="PrimaryDark">#ff3b30</Color>
+            <Color x:Key="Accent">#ff3b30</Color>
+            <Color x:Key="LightBackgroundColor">#FAFAFA</Color>
+            <Color x:Key="DarkBackgroundColor">#C0C0C0</Color>
+            <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
+            <Color x:Key="LightTextColor">#ffffff</Color>
+            
+            
+            <Style TargetType="views:MvxNavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="TextColor" Value="{StaticResource LightTextColor}" />
+            </Style>
+            <Style x:Key="errorStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="FontSize" Value="8" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+            <Style TargetType="Picker">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+            <Style TargetType="renderer:CustomDatePicker">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+            <Style TargetType="TimePicker">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="BarTextColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+        <Thickness x:Key="PageMargin">10,5</Thickness>
+	</mvx:MvxFormsApplication.Resources>
+</mvx:MvxFormsApplication>

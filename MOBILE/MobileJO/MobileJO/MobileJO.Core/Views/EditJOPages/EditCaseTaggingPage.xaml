@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+    x:Class="MobileJO.Core.Views.EditCaseTaggingPage"
+    Title="Tag Cases">
+
+    <StackLayout Margin="{StaticResource PageMargin}" Orientation="Vertical">
+
+        <SearchBar Text="{Binding SearchText}"
+                   Placeholder="Search..."
+                   HorizontalOptions="StartAndExpand"
+                   FontSize="12"/>
+        
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Case#" WidthRequest="100" FontAttributes="Bold"/>
+            <Label Text="Subject" FontAttributes="Bold"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Vertical">
+            <ListView ItemsSource="{Binding Selection}"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCaseList}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      CachingStrategy="RecycleElement"
+                      SelectedItem="{Binding SelectedCase, Mode=TwoWay}">
+                <ListView.Header>
+                    <Label Text="No records found." 
+                       FontSize="Small"
+                       IsVisible="{Binding NoRecords}"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       HorizontalTextAlignment="Center"/>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Item.CaseNumber}"
+                                       WidthRequest="100"/>
+                                <Label Text="{Binding Item.CaseSubject}" FontSize="12"/>
+                                <input:CheckBox Type="Check"
+                                                    IsChecked="{Binding IsSelected}"
+                                                    HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+
+        <Button Text="Add" 
+                Command="{Binding GoToSelectedCasesPageCommand}"/>
+
+    </StackLayout>
+
+</base:BaseContentPage>

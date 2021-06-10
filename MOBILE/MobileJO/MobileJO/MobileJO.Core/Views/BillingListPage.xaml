@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage 
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileJO.Core.Views.BillingListPage"
+             xmlns:base="clr-namespace:MobileJO.Core.Base"
+             Title="Billing Types">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="20" Padding="20">
+                <Label Text="BL #"
+                       TextColor="Gray"
+                       WidthRequest="120"
+                       FontAttributes="Bold"/>
+                <Label Text="Name"
+                       TextColor="Gray"
+                       FontAttributes="Bold"/>
+            </StackLayout>
+            <ListView ItemsSource="{Binding _billingTypes}"  
+                      SeparatorColor="LightGray" 
+                      HasUnevenRows="False"
+                      SelectedItem="{Binding SelectedCase, Mode=TwoWay}"
+                      RowHeight="100"
+                      CachingStrategy="RecycleElement"
+                      IsPullToRefreshEnabled="False"
+                      IsEnabled="False">
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="20" Padding="30">
+                                <Label Text="{Binding BillingTypeID}"
+                                             TextColor="Black" 
+                                             WidthRequest="100"
+                                             FontAttributes="Bold"/>
+                                <Label Text="{Binding BillingTypeName}"
+                                             TextColor="DarkGray"/>
+                                <Label Text = "{Binding CaseSubject}"
+                                             TextColor="Black"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</base:BaseContentPage>

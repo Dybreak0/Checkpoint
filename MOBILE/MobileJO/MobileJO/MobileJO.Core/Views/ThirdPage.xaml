@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage 
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileJO.Core.Views.ThirdPage"
+             xmlns:base="clr-namespace:MobileJO.Core.Base"
+             Title="Job Order Details" BackgroundColor="White">
+
+    <StackLayout Orientation="Vertical" Padding="10" BackgroundColor="White">
+        <StackLayout  VerticalOptions="StartAndExpand" BackgroundColor="White">
+            <TableView Intent="Form" HasUnevenRows="True" BackgroundColor="White">
+                <TableRoot>
+                    <TableSection>
+                        <ViewCell Height="50">
+                            <Grid Padding="10,10" >
+                                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" >
+                                    <Label Text="Billed:"  FontAttributes="Bold"  FontSize="12"/>
+                                    <Switch IsToggled="{Binding JobOrderModel.Is_Billed}"
+                                        IsEnabled="False"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1" >
+                                    <Label Text="Collaterals:"  FontAttributes="Bold"  FontSize="12"/>
+                                    <Switch IsToggled="{Binding JobOrderModel.Is_Collaterals}"
+                                        IsEnabled="False"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                        <ViewCell Height="50">
+                            <Grid Padding="10,10">
+                                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" BackgroundColor="White">
+                                    <Label Text="Billing Types:"  FontAttributes="Bold"  FontSize="12"></Label>
+                                    <ImageButton Source="view_button.png" 
+                                             Command="{Binding ViewBillingType}"
+                                             HeightRequest="40"
+                                             BackgroundColor="White"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                        <ViewCell Height="50">
+                            <Grid Padding="10,10">
+                                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" BackgroundColor="White">
+                                    <Label Text="Client Signature:"  FontAttributes="Bold"  FontSize="12"/>
+                                    <ImageButton Source="view_button.png" 
+                                             Command="{Binding ViewSignature}"
+                                             IsEnabled="{Binding Signature}"
+                                             HeightRequest="40"
+                                             BackgroundColor="White"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                        <ViewCell Height="170">
+                            <StackLayout Orientation="Vertical" Padding="10,0,10,0">
+                                <Grid RowSpacing="10" ColumnSpacing="60">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0"  
+                                       Text="Client Ratings:"
+                                        FontAttributes="Bold"
+                                        FontSize="12"/>
+
+                                    <Label Grid.Row="1" Grid.Column="0"  
+                                       Text="1. Was the problem fixed?"
+                                        FontSize="12"/>
+                                    <Switch Grid.Row="1" Grid.Column="1"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding JobOrderModel.Is_Fixed}"
+                                        IsEnabled="false"/>
+
+                                    <Label Grid.Row="2" Grid.Column="0"  
+                                       Text="2. Are you satisfied with our service?"
+                                        FontSize="12"/>
+                                    <Switch Grid.Row="2" Grid.Column="1"
+                                        HorizontalOptions="Start"
+                                        IsToggled="{Binding JobOrderModel.Is_Satisfied}"
+                                        IsEnabled="False"/>
+
+                                    <Label Grid.Row="3" Grid.Column="0"  
+                                       Text="3. Rate us 1-5(5 is the highest)"
+                                       FontSize="12"/>
+                                    <Entry Grid.Row="3" Grid.Column="1"
+                                       Text="{Binding JobOrderModel.ClientRating}"
+                                       FontSize="12"
+                                       IsEnabled="False"
+                                       TextColor="DarkGray"/>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell Height="130" >
+                            <Grid RowSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Row="0" Grid.Column="0"
+                                         Orientation="Vertical"
+                                         VerticalOptions="Start"
+                                         >
+                                    <Label Text="Attachments:"
+                                        FontAttributes="Bold"/>
+
+                                    <ListView ItemsSource="{Binding _attachments}"
+                                              SeparatorColor="Snow"
+                                              SelectedItem="{Binding SelectedAttachment, Mode=TwoWay}"
+                                              Grid.Row="1" Grid.Column="0">
+                                        <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label Text="{Binding Filename}"
+                                                               TextDecorations="Underline"
+                                                               TextColor="DeepSkyBlue"
+                                                               LineBreakMode="TailTruncation"/>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                             </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </StackLayout>
+        <StackLayout VerticalOptions="End" HeightRequest="50" BackgroundColor="White">
+            <Grid RowSpacing="1" ColumnSpacing="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button  Grid.Row="0" Grid.Column="0" Text="Edit" BackgroundColor="Red" Command="{Binding EditJobOrderCommand}" IsEnabled="{Binding EnableEdit}" FontSize="12"  HeightRequest="40" TextColor="White"/>
+                <Button  Grid.Row="0" Grid.Column="1" Text="Revert" BackgroundColor="Red" Command="{Binding RevertJobOrder}" IsEnabled="{Binding EnableRevert}" FontSize="12" HeightRequest="40" TextColor="White"/>
+                <Button  Grid.Row="0" Grid.Column="2" Text="Email JO" BackgroundColor="Red" Command="{Binding EmailJobOrderCommand}" IsEnabled="{Binding EnableEmailJO}" FontSize="12" HeightRequest="40" TextColor="White"/>
+                <Button  Grid.Row="0" Grid.Column="3" Text="Delete" BackgroundColor="Red" Command="{Binding DeleteJobOrder}" IsEnabled="{Binding EnableDelete}" FontSize="12" HeightRequest="40" TextColor="White"/>
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</base:BaseContentPage>

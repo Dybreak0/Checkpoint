@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MobileJO.Core.Views.BillingTypesSelectedPage"
+    xmlns:res="clr-namespace:MobileJO.Core.Resources;assembly=MobileJO.Core"
+    xmlns:components="clr-namespace:MobileJO.Core.Components"
+    xmlns:renderer="clr-namespace:MobileJO.Core.CustomRenderer;assembly=MobileJO.Core"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    Title="Billing Types Selected">
+
+    <StackLayout Orientation="Vertical" Margin="{StaticResource PageMargin}">
+
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Text="BT#" 
+                FontAttributes="Bold" 
+                TextColor="Black"
+                FontSize="Small"/>
+            <Label Grid.Row="0" Grid.Column="1" Text="Name" 
+                FontAttributes="Bold" 
+                TextColor="Black"
+                FontSize="Small"/>
+        </Grid>
+        <StackLayout HeightRequest="230">
+            <ListView x:Name="listView" 
+                      ItemsSource="{Binding BillingTypesSelected}">
+                <ListView.Header>
+                    <Label Text="No records found." 
+                       FontSize="Small"
+                       IsVisible="{Binding NoRecords}"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       HorizontalTextAlignment="Center"/>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Label Grid.Row="0" Grid.Column="0" 
+                                    Text="{Binding ID}"/>
+                                <Label Grid.Row="0" Grid.Column="1" 
+                                       Text="{Binding BillingTypeName}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </StackLayout>
+
+</base:BaseContentPage>

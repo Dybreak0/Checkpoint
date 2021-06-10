@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MobileJO.Core.Views.TestJobOrderListPage"
+    xmlns:res="clr-namespace:MobileJO.Core.Resources;assembly=MobileJO.Core"
+    xmlns:components="clr-namespace:MobileJO.Core.Components"
+    xmlns:renderer="clr-namespace:MobileJO.Core.CustomRenderer;assembly=MobileJO.Core"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"    
+    Title="Job Order Form"
+    NavigationPage.HasBackButton="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Sync" Command="{Binding SyncCommand}" Priority="0"></ToolbarItem>
+        <ToolbarItem Text="New" Command="{Binding GoToFirstPageCommand}" Priority="1"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="9"/>
+            <Setter Property="WidthRequest" Value="60" />
+            <Setter Property="HeightRequest" Value="30" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout>
+        <ListView ItemsSource="{Binding JobOrders}"
+                  SelectedItem="{Binding SelectedJobOrder}" 
+                  IsPullToRefreshEnabled="True"
+                  RefreshCommand="{Binding RefreshListCommand}"
+                  IsRefreshing="{Binding IsRefreshing}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding ServerID}"
+                                       TextColor="Black"/>
+                            <Label Text="{Binding JobOrderSubject}"
+                                       TextColor="Black"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</base:BaseContentPage>

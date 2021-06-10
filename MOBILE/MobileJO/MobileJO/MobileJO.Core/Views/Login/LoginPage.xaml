@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage 
+                xmlns:base="clr-namespace:MobileJO.Core.Base"
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="MobileJO.Core.Views.Login.LoginPage"
+                NavigationPage.HasBackButton="False">
+    <base:BaseContentPage.Content>
+        <ScrollView>
+            <StackLayout 
+            VerticalOptions="Center">
+
+            <Image>
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="FileImageSource">
+                        <On Platform="iOS" Value="logoicon02.png" />
+                        <On Platform="Android" Value="logoicon023x.png" />
+                    </OnPlatform>
+                </Image.Source>
+            </Image>
+
+            <Label Text="Alliance Checkpoint"
+                   FontSize="Large"
+                   HorizontalOptions="Center"/>
+            <StackLayout Padding="20"/>
+                <StackLayout
+                HorizontalOptions="FillAndExpand"
+                Padding="35">
+                    <Label Text="You have been temporarily locked out of your account for 30 seconds due to maximum failed login attempts. Please try again later."
+                       IsVisible="{Binding ShowError, Mode=TwoWay}"
+                       TextColor="Red"/>
+
+                    <Entry  
+                    Text="{Binding UserName}"
+                    Placeholder="Username"/>
+                    <Entry  
+                    Text="{Binding Password}"
+                    IsPassword="True"
+                    Placeholder="Password"/>
+
+                    <StackLayout 
+                    Padding="0,30,0,0">
+                        <Button  Text="LOGIN"
+                             Command="{Binding Login}"
+                             IsEnabled="{Binding ButtonEnabled, Mode=TwoWay}"/>
+                        <StackLayout Padding="1"/>
+                        <Label Text="Forgot Password?"
+                           FontSize="Small"
+                           HorizontalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ForgotPassword}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </base:BaseContentPage.Content>
+</base:BaseContentPage>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+    x:Class="MobileJO.Core.Views.BillingTypesPage"
+    Title="Billing Types">
+
+    <StackLayout Margin="{StaticResource PageMargin}">
+
+        <Label Text="Billing Type Name" 
+               FontAttributes="Bold" 
+               FontSize="Small"/>
+        <ListView 
+                  ItemsSource="{Binding SelectionBillingTypes}"   
+                  SelectionMode="None"
+                  CachingStrategy="RecycleElement">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Item.BillingTypeName}"
+                                   TextColor="Black"/>
+                            <input:CheckBox Type="Check"
+                                            IsChecked="{Binding IsSelected}"
+                                            HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Add" 
+                Command="{Binding AddBillingTypesCommand}"/>
+    </StackLayout>
+
+</base:BaseContentPage>

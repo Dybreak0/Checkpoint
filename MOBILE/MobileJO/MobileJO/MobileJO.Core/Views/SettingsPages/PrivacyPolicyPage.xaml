@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage 
+                xmlns:base="clr-namespace:MobileJO.Core.Base"
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="MobileJO.Core.Views.SettingsPages.PrivacyPolicyPage"
+                Title="Privacy Statement"
+                NavigationPage.HasBackButton="True">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Privacy Policy"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</base:BaseContentPage>
