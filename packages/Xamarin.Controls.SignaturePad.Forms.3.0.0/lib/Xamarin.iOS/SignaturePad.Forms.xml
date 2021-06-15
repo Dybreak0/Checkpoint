@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SignaturePad.Forms</name>
+    </assembly>
+    <members>
+        <member name="M:SignaturePad.Forms.SignaturePadCanvasView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image stream of the currently drawn signature.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadCanvasView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Size,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image stream of the currently drawn signature at the specified size.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadCanvasView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image stream of the currently drawn signature at the specified scale.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadCanvasView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Color,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image stream of the currently drawn signature with the specified stroke color.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadCanvasView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Color,Xamarin.Forms.Size,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image stream of the currently drawn signature at the specified size with the specified stroke color.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadCanvasView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Color,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image stream of the currently drawn signature at the specified scale with the specified stroke color.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadCanvasView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Color,Xamarin.Forms.Color,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image stream of the currently drawn signature with the specified stroke and background colors.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadCanvasView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Color,Xamarin.Forms.Color,Xamarin.Forms.Size,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image stream of the currently drawn signature at the specified size with the specified stroke and background colors.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadCanvasView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Color,Xamarin.Forms.Color,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image stream of the currently drawn signature at the specified scale with the specified stroke and background colors.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadCanvasView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,SignaturePad.Forms.ImageConstructionSettings)">
+            <summary>
+            Create an encoded image stream of the currently drawn signature using the specified settings.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.SignaturePadCanvas">
+            <summary>
+            Gets the underlying control that handles the signatures.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.SignatureLine">
+            <summary>
+            Gets the horizontal line that goes in the lower part of the pad.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.CaptionLabel">
+            <summary>
+            The caption displayed under the signature line.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.SignaturePrompt">
+            <summary>
+            The prompt displayed at the beginning of the signature line.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.ClearLabel">
+            <summary>
+            Gets the label that clears the pad when clicked.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.BackgroundImageView">
+            <summary>
+            Gets the image view that handles the background image.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.StrokeColor">
+            <summary>
+            Gets or sets the color of the signature strokes.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.StrokeWidth">
+            <summary>
+            Gets or sets the width of the signature strokes.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.SignatureLineColor">
+            <summary>
+            Gets or sets the color of the signature line.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.SignatureLineWidth">
+            <summary>
+            Gets or sets the width of the signature line.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.SignatureLineSpacing">
+            <summary>
+            Gets or sets the size of the spacing between the signature line and the caption.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.CaptionText">
+            <summary>
+            Gets or sets the text for the caption displayed under the signature line.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.CaptionFontSize">
+            <summary>
+            Gets or sets the font size of the caption.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.CaptionTextColor">
+            <summary>
+            Gets or sets the color of the caption text.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.PromptText">
+            <summary>
+            Gets or sets the text for the prompt displayed at the beginning of the signature line.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.PromptFontSize">
+            <summary>
+            Gets or sets the font size of the prompt displayed at the beginning of the signature line.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.PromptTextColor">
+            <summary>
+            Gets or sets the text color of the prompt displayed at the beginning of the signature line.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.ClearText">
+            <summary>
+            Gets or sets the text for the label that clears the pad when clicked.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.ClearFontSize">
+            <summary>
+            Gets or sets the font size of the label that clears the pad when clicked.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.ClearTextColor">
+            <summary>
+            Gets or sets the color of the label that clears the pad when clicked.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.BackgroundImage">
+            <summary>
+             Gets or sets the watermark image.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.BackgroundImageAspect">
+            <summary>
+             Gets or sets the aspect for the watermark image.
+            </summary>
+        </member>
+        <member name="P:SignaturePad.Forms.SignaturePadView.BackgroundImageOpacity">
+            <summary>
+             Gets or sets the transparency of the watermark.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image of the currently drawn signature.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Size,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image of the currently drawn signature at the specified size.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image of the currently drawn signature at the specified scale.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Color,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image of the currently drawn signature with the specified stroke color.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Color,Xamarin.Forms.Size,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image of the currently drawn signature at the specified size with the specified stroke color.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Color,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image of the currently drawn signature at the specified scale with the specified stroke color.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Color,Xamarin.Forms.Color,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image of the currently drawn signature with the specified stroke and background colors.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Color,Xamarin.Forms.Color,Xamarin.Forms.Size,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image of the currently drawn signature at the specified size with the specified stroke and background colors.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,Xamarin.Forms.Color,Xamarin.Forms.Color,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Create an encoded image of the currently drawn signature at the specified scale with the specified stroke and background colors.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat,SignaturePad.Forms.ImageConstructionSettings)">
+            <summary>
+            Create an encoded image of the currently drawn signature using the specified settings.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadCanvasRenderer.UpdateAll">
+            <summary>
+            Update all the properties on the native view.
+            </summary>
+        </member>
+        <member name="M:SignaturePad.Forms.SignaturePadCanvasRenderer.Update(System.String)">
+            <summary>
+            Update a specific property on the native view.
+            </summary>
+        </member>
+    </members>
+</doc>

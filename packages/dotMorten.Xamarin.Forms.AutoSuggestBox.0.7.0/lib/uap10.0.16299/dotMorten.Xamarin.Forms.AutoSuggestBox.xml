@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>dotMorten.Xamarin.Forms.AutoSuggestBox</name>
+    </assembly>
+    <members>
+        <member name="T:dotMorten.Xamarin.Forms.AutoSuggestBox">
+            <summary>
+            Represents a text control that makes suggestions to users as they type. The app is notified when text 
+            has been changed by the user and is responsible for providing relevant suggestions for this control to display.
+            Use the UWP Reference doc for more information: <a href="https://msdn.microsoft.com/en-us/library/windows/apps/mt280217.aspx">Link</a>
+            </summary>
+        </member>
+        <member name="M:dotMorten.Xamarin.Forms.AutoSuggestBox.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:dotMorten.Xamarin.Forms.AutoSuggestBox"/> class
+            </summary>
+        </member>
+        <member name="P:dotMorten.Xamarin.Forms.AutoSuggestBox.Text">
+            <summary>
+            Gets or sets the Text property
+            </summary>
+            <seealso cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.TextColor"/>
+        </member>
+        <member name="F:dotMorten.Xamarin.Forms.AutoSuggestBox.TextProperty">
+            <summary>
+            Identifies the <see cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.Text"/> bindable property.
+            </summary>
+        </member>
+        <member name="P:dotMorten.Xamarin.Forms.AutoSuggestBox.TextColor">
+            <summary>
+            Gets or sets the foreground color of the control
+            </summary>
+            <seealso cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.Text"/>
+        </member>
+        <member name="F:dotMorten.Xamarin.Forms.AutoSuggestBox.TextColorProperty">
+            <summary>
+            Identifies the <see cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.TextColor"/> bindable property.
+            </summary>
+        </member>
+        <member name="P:dotMorten.Xamarin.Forms.AutoSuggestBox.PlaceholderText">
+            <summary>
+            Gets or sets the PlaceholderText
+            </summary>
+            <seealso cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.PlaceholderTextColor"/>
+        </member>
+        <member name="F:dotMorten.Xamarin.Forms.AutoSuggestBox.PlaceholderTextProperty">
+            <summary>
+            Identifies the <see cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.PlaceholderText"/> bindable property.
+            </summary>
+        </member>
+        <member name="P:dotMorten.Xamarin.Forms.AutoSuggestBox.PlaceholderTextColor">
+            <summary>
+            Gets or sets the foreground color of the control
+            </summary>
+            <seealso cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.PlaceholderText"/>
+        </member>
+        <member name="F:dotMorten.Xamarin.Forms.AutoSuggestBox.PlaceholderTextColorProperty">
+            <summary>
+            Identifies the <see cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.PlaceholderTextColor"/> bindable property.
+            </summary>
+        </member>
+        <member name="P:dotMorten.Xamarin.Forms.AutoSuggestBox.TextMemberPath">
+            <summary>
+            Gets or sets the property path that is used to get the value for display in the
+            text box portion of the AutoSuggestBox control, when an item is selected.
+            </summary>
+            <value>
+            The property path that is used to get the value for display in the text box portion
+            of the AutoSuggestBox control, when an item is selected.
+            </value>
+        </member>
+        <member name="F:dotMorten.Xamarin.Forms.AutoSuggestBox.TextMemberPathProperty">
+            <summary>
+            Identifies the <see cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.TextMemberPath"/> bindable property.
+            </summary>
+        </member>
+        <member name="P:dotMorten.Xamarin.Forms.AutoSuggestBox.DisplayMemberPath">
+            <summary>
+            Gets or sets the name or path of the property that is displayed for each data item.
+            </summary>
+            <value>
+            The name or path of the property that is displayed for each the data item in
+            the control. The default is an empty string ("").
+            </value>
+        </member>
+        <member name="F:dotMorten.Xamarin.Forms.AutoSuggestBox.DisplayMemberPathProperty">
+            <summary>
+            Identifies the <see cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.DisplayMemberPath"/> bindable property.
+            </summary>
+        </member>
+        <member name="P:dotMorten.Xamarin.Forms.AutoSuggestBox.IsSuggestionListOpen">
+            <summary>
+            Gets or sets a Boolean value indicating whether the drop-down portion of the AutoSuggestBox is open.
+            </summary>
+            <value>A Boolean value indicating whether the drop-down portion of the AutoSuggestBox is open.</value>
+        </member>
+        <member name="F:dotMorten.Xamarin.Forms.AutoSuggestBox.IsSuggestionListOpenProperty">
+            <summary>
+            Identifies the <see cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.IsSuggestionListOpen"/> bindable property.
+            </summary>
+        </member>
+        <member name="P:dotMorten.Xamarin.Forms.AutoSuggestBox.UpdateTextOnSelect">
+            <summary>
+            Used in conjunction with <see cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.TextMemberPath"/>, gets or sets a value indicating whether items in the view will trigger an update 
+            of the editable text part of the <see cref="T:dotMorten.Xamarin.Forms.AutoSuggestBox"/> when clicked.
+            </summary>
+            <value>A value indicating whether items in the view will trigger an update of the editable text part of the <see cref="T:dotMorten.Xamarin.Forms.AutoSuggestBox"/> when clicked.</value>
+        </member>
+        <member name="F:dotMorten.Xamarin.Forms.AutoSuggestBox.UpdateTextOnSelectProperty">
+            <summary>
+            Identifies the <see cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.UpdateTextOnSelect"/> bindable property.
+            </summary>
+        </member>
+        <member name="P:dotMorten.Xamarin.Forms.AutoSuggestBox.ItemsSource">
+            <summary>
+            Gets or sets the header object for the text box portion of this control.
+            </summary>
+            <value>The header object for the text box portion of this control.</value>
+        </member>
+        <member name="F:dotMorten.Xamarin.Forms.AutoSuggestBox.ItemsSourceProperty">
+            <summary>
+            Identifies the <see cref="P:dotMorten.Xamarin.Forms.AutoSuggestBox.ItemsSource"/> bindable property.
+            </summary>
+        </member>
+        <member name="E:dotMorten.Xamarin.Forms.AutoSuggestBox.SuggestionChosen">
+            <summary>
+            Raised before the text content of the editable control component is updated.
+            </summary>
+        </member>
+        <member name="E:dotMorten.Xamarin.Forms.AutoSuggestBox.TextChanged">
+            <summary>
+            Raised after the text content of the editable control component is updated.
+            </summary>
+        </member>
+        <member name="E:dotMorten.Xamarin.Forms.AutoSuggestBox.QuerySubmitted">
+            <summary>
+            Occurs when the user submits a search query.
+            </summary>
+        </member>
+        <member name="T:dotMorten.Xamarin.Forms.AutoSuggestBoxQuerySubmittedEventArgs">
+            <summary>
+            Provides event data for the AutoSuggestBox.QuerySubmitted event.
+            </summary>
+        </member>
+        <member name="M:dotMorten.Xamarin.Forms.AutoSuggestBoxQuerySubmittedEventArgs.#ctor(System.String,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:dotMorten.Xamarin.Forms.AutoSuggestBoxQuerySubmittedEventArgs"/> class.
+            </summary>
+            <param name="queryText"></param>
+            <param name="chosenSuggestion"></param>
+        </member>
+        <member name="P:dotMorten.Xamarin.Forms.AutoSuggestBoxQuerySubmittedEventArgs.ChosenSuggestion">
+            <summary>
+            Gets the suggested result that the use chose.
+            </summary>
+            <value>The suggested result that the use chose.</value>
+        </member>
+        <member name="P:dotMorten.Xamarin.Forms.AutoSuggestBoxQuerySubmittedEventArgs.QueryText">
+            <summary>
+            The query text of the current search.
+            </summary>
+            <value>Gets the query text of the current search.</value>
+        </member>
+        <member name="T:dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs">
+            <summary>
+            Provides data for the <see cref="E:dotMorten.Xamarin.Forms.AutoSuggestBox.SuggestionChosen"/> event.
+            </summary>
+        </member>
+        <member name="M:dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs"/> class.
+            </summary>
+            <param name="selectedItem"></param>
+        </member>
+        <member name="P:dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs.SelectedItem">
+            <summary>
+            Gets a reference to the selected item.
+            </summary>
+            <value>A reference to the selected item.</value>
+        </member>
+        <member name="T:dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs">
+            <summary>
+            Provides data for the TextChanged event.
+            </summary>
+        </member>
+        <member name="M:dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs.#ctor(dotMorten.Xamarin.Forms.AutoSuggestionBoxTextChangeReason)">
+            <summary>
+            Initializes a new instance of the <see cref="T:dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs"/> class.
+            </summary>
+            <param name="reason"></param>
+        </member>
+        <member name="M:dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs.CheckCurrent">
+            <summary>
+            Returns a Boolean value indicating if the current value of the TextBox is unchanged from the point in time when the TextChanged event was raised.
+            </summary>
+            <returns>Indicates if the current value of the TextBox is unchanged from the point in time when the TextChanged event was raised.</returns>
+        </member>
+        <member name="P:dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs.Reason">
+            <summary>
+            Gets or sets a value that indicates the reason for the text changing in the AutoSuggestBox.
+            </summary>
+            <value>The reason for the text changing in the AutoSuggestBox.</value>
+        </member>
+        <member name="T:dotMorten.Xamarin.Forms.AutoSuggestionBoxTextChangeReason">
+            <summary>
+            Provides data for the <see cref="E:dotMorten.Xamarin.Forms.AutoSuggestBox.TextChanged"/> event.
+            </summary>
+        </member>
+        <member name="F:dotMorten.Xamarin.Forms.AutoSuggestionBoxTextChangeReason.UserInput">
+            <summary>The user edited the text.</summary>
+        </member>
+        <member name="F:dotMorten.Xamarin.Forms.AutoSuggestionBoxTextChangeReason.ProgrammaticChange">
+            <summary>The text was changed via code.</summary>
+        </member>
+        <member name="F:dotMorten.Xamarin.Forms.AutoSuggestionBoxTextChangeReason.SuggestionChosen">
+            <summary>The user selected one of the items in the auto-suggestion box.</summary>
+        </member>
+        <member name="T:dotMorten.Xamarin.Forms.Platform.UWP.AutoSuggestBoxRenderer">
+            <summary>
+            Platform specific renderer for the <see cref="T:dotMorten.Xamarin.Forms.AutoSuggestBox"/>
+            </summary>
+        </member>
+        <member name="M:dotMorten.Xamarin.Forms.Platform.UWP.AutoSuggestBoxRenderer.OnElementChanged(Xamarin.Forms.Platform.UWP.ElementChangedEventArgs{dotMorten.Xamarin.Forms.AutoSuggestBox})">
+            <inheritdoc />
+        </member>
+        <member name="M:dotMorten.Xamarin.Forms.Platform.UWP.AutoSuggestBoxRenderer.CreateNativeControl">
+            <inheritdoc />
+        </member>
+        <member name="M:dotMorten.Xamarin.Forms.Platform.UWP.AutoSuggestBoxRenderer.OnElementPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
