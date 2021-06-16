@@ -1,2 +1,0 @@
-webpackJsonp([0],{"1ccB":function(e,a){e.exports={login:"ログイン",loginSmall:"ログイン",email:"メール",password:"パスワード",langEn:"英語",langJa:"日本語",peopleManagement:"人材管理",logout:"ログアウト",people:"人達",details:"詳細",peopleTab:"[人達]タブ",detailsTab:"[詳細]タブ",name:"名",role:"役割",operations:"操作",edit:"編集",delete:"削除",new:"新",back:"裏",firstName:"名",lastName:"苗字",save:"セーブ",cancel:"キャンセル",detailsForm:"[詳細]フォーム",personForm:"[人達]フォーム",confirm:"確認する",confirmMsg:"本気ですか？",yes:"はい",no:"いいえ"}}});
-//# sourceMappingURL=0.bffb9ff93545602a08b3.js.map
