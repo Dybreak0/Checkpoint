@@ -59,6 +59,24 @@
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}"/>
                 <Setter Property="BarTextColor" Value="White"/>
             </Style>
+
+            <Style x:Key="ClientSignatureStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Blue" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="TextDecorations" Value="Underline" />
+            </Style>
+            <Style TargetType="ContentView"
+                x:Key="BorderContentView">
+                <Setter Property="BackgroundColor"
+            Value="{StaticResource MediumGrayTextColor}" />
+                <Setter Property="Padding"
+            Value="0, 10" />
+            </Style>       
+
+            <Style x:Key="Divider" TargetType="BoxView">
+                <Setter Property="Margin" Value="0, 5, 0, 15" />
+            </Style>
         </ResourceDictionary>
         <Thickness x:Key="PageMargin">10,5</Thickness>
 	</mvx:MvxFormsApplication.Resources>

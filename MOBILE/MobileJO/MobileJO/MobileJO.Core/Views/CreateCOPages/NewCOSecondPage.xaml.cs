@@ -1,12 +1,12 @@
-﻿using MobileJO.Core.Base;
-using MobileJO.Core.Contracts;
-using Xamarin.Forms;
+﻿
+using MobileJO.Core.Base;
+using MobileJO.Core.ViewModels.CreateCOViewModels;
 
-namespace MobileJO.Core.Views
+namespace MobileJO.Core.Views.CreateCOPages
 {
-    public partial class MainPage : BaseContentPage
+    public partial class NewCOSecondPage : BaseContentPage
     {
-        public MainPage()
+        public NewCOSecondPage()
         {
             InitializeComponent();
 
@@ -17,12 +17,11 @@ namespace MobileJO.Core.Views
             Content = null;
             Content = CreateLoadingIndicatorRelativeLayout(tempContent);
         }
-
         protected override bool OnBackButtonPressed()
         {
-            var appCloser = DependencyService.Get<ICloseApplication>();
+            var vm = (NewCOSecondViewModel)DataContext;
 
-            appCloser?.ExitApplication();
+            vm.CloseCommand.Execute();
 
             return true;
         }

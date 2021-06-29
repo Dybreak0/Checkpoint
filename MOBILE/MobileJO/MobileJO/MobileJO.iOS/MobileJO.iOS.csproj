@@ -175,6 +175,7 @@
     <BundleResource Include="Resources\audit_button.png" />
     <BundleResource Include="Resources\sync.png" />
     <BundleResource Include="Resources\video.png" />
+    <BundleResource Include="Resources\logoaddessa.png" />
     <None Include="app.config" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>

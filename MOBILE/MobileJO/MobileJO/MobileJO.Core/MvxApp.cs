@@ -42,7 +42,7 @@ namespace MobileJO.Core
 
             if (Helpers.HasValidSession())
             {
-                RegisterAppStart<ViewModels.QuestionnaireListViewModel>();
+                RegisterAppStart<ViewModels.MainViewModel>();
             }
             else
             {

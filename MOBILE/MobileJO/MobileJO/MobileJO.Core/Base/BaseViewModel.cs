@@ -7,6 +7,7 @@ using MvvmCross.ViewModels;
 using MobileJO.Core.Contracts;
 using MobileJO.Core.Utilities;
 using System.Threading.Tasks;
+using MobileJO.Core.ViewModels.FieldCOViewModels;
 
 namespace MobileJO.Core.Base
 {
@@ -24,13 +25,12 @@ namespace MobileJO.Core.Base
         private bool _isNotBusy = true;
         private bool _canLoadMore = true;
 
-
         public BaseViewModel(IUserDialogs userDialogs, ILocalizeService localizeService)
         {
             UserDialogs = userDialogs;
             LocalizeService = localizeService;
         }
-        
+
         /// <summary>
         /// Gets or sets a value indicating whether this instance is busy.
         /// </summary>

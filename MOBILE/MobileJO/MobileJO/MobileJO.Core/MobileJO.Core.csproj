@@ -91,11 +91,17 @@
         <Compile Update="Views\AssignedCases\AssignedCasesDetails.xaml.cs">
           <DependentUpon>AssignedCasesDetails.xaml</DependentUpon>
         </Compile>
+        <Compile Update="Views\CustomerOrderPages\SearchCustomerOrderPage.xaml.cs">
+          <DependentUpon>SearchCustomerOrderPage.xaml</DependentUpon>
+        </Compile>
         <Compile Update="Views\ForgotPasswordPage.xaml.cs">
           <DependentUpon>ForgotPasswordPage.xaml</DependentUpon>
         </Compile>
         <Compile Update="Views\JobOrderListPage.xaml.cs">
           <DependentUpon>JobOrderListPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\MainPages\MainPage.xaml.cs">
+          <DependentUpon>MainPage.xaml</DependentUpon>
         </Compile>
         <Compile Update="Views\SearchPage.xaml.cs">
           <DependentUpon>SearchPage.xaml</DependentUpon>
@@ -112,6 +118,18 @@
           <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
         </EmbeddedResource>
         <EmbeddedResource Update="Views\AssignedCases\SearchFilterPage.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\CreateCOPages\AddUnitDesiredPage.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\CreateCOPages\NewCOFirstPage.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\CreateCOPages\NewCOSecondPage.xaml">
+          <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\CustomerOrderPages\SearchCustomerOrderPage.xaml">
           <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
         </EmbeddedResource>
         <EmbeddedResource Update="Views\EmailJO\EmailJO.xaml">

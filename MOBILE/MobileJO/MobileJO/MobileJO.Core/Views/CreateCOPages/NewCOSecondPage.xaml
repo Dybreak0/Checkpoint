@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns:renderer="clr-namespace:MobileJO.Core.CustomRenderer;assembly=MobileJO.Core"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    x:Class="MobileJO.Core.Views.CreateCOPages.NewCOSecondPage"
+    Title="Customer Order Form">
+
+    <ScrollView Margin="{StaticResource PageMargin}">
+        <StackLayout Orientation="Vertical"
+                     Spacing="-5">
+
+            <Grid RowSpacing="-10">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="Auto"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="1"
+                       Text="All fields with (*) are required." 
+                       TextColor="Red" 
+                       FontSize="8"/>
+                <!--====-->
+                <BoxView Grid.Row="1" Grid.ColumnSpan="2"
+                         Color="{StaticResource PrimaryDark}"
+                         Style="{StaticResource Divider}"
+                         HeightRequest="3"/>
+
+                <Label Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Res. Cert No.:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="2" Grid.Column="1" 
+                       Text="{Binding ClientResCertNo}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="3" Grid.Column="1" 
+                       Text="{Binding ClientResCertNoErrorMsg}"
+                       IsVisible="{Binding ClientResCertNoError}"/>
+                <!--====-->
+                <Label Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Place Issued:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="4" Grid.Column="1" 
+                       Text="{Binding ClientPlaceIssued}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="5" Grid.Column="1" 
+                       Text="{Binding ClientPlaceIssuedErrorMsg}"
+                       IsVisible="{Binding ClientPlaceIssuedError}"/>
+                <!--====-->
+                <Label Grid.Row="6" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Date:"  />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <renderer:CustomDatePicker  
+                    Grid.Row="6" Grid.Column="1" 
+                    Date="{Binding ClientDate}"
+                    Format="MM/dd/yyyy" 
+                    HasBackground="true">
+                </renderer:CustomDatePicker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="7" Grid.Column="1" 
+                       Text="{Binding ClientDateErrorMsg}"
+                       IsVisible="{Binding ClientDateError}"/>
+                <!--====-->
+                <Label Grid.Row="8" Grid.Column="0" HorizontalTextAlignment="End"
+                       Text="Client Signature:" FontAttributes="Bold"/>
+                <Button Style="{StaticResource ClientSignatureStyle}"
+                       Command="{Binding DrawClientSignaturePageCommand}"
+                        BackgroundColor="Transparent"
+                       Grid.Row="8" Grid.Column="1"
+                       Text="Click here to add Client Signature"/>
+                <!--====-->
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="9" Grid.Column="1" 
+                       Text="{Binding ClientSignatureErrorMsg}"
+                       IsVisible="{Binding ClientSignatureError}"/>
+                <!--====-->
+                <BoxView Grid.Row="10" Grid.ColumnSpan="2"
+                         Color="{StaticResource PrimaryDark}"
+                         Style="{StaticResource Divider}"
+                         HeightRequest="3"/>
+                <!--====-->
+                <!--====-->
+                <Label Grid.Row="11" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Res. Cert No.:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="11" Grid.Column="1" 
+                       Text="{Binding SpouseResCertNo}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="12" Grid.Column="1" 
+                       Text="{Binding SpouseResCertNoErrorMsg}"
+                       IsVisible="{Binding SpouseResCertNoError}"/>
+                <!--====-->
+                <Label Grid.Row="13" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Place Issued:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="13" Grid.Column="1" 
+                       Text="{Binding SpousePlaceIssued}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="14" Grid.Column="1" 
+                       Text="{Binding SpousePlaceIssuedErrorMsg}"
+                       IsVisible="{Binding SpousePlaceIssuedError}"/>
+                <!--====-->
+                <Label Grid.Row="15" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Date:"  />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <renderer:CustomDatePicker  
+                    Grid.Row="15" Grid.Column="1" 
+                    Date="{Binding SpouseDate}"
+                    Format="MM/dd/yyyy" 
+                    HasBackground="true">
+                </renderer:CustomDatePicker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="16" Grid.Column="1" 
+                       Text="{Binding SpouseDateErrorMsg}"
+                       IsVisible="{Binding SpouseDateError}"/>
+                <!--====-->
+                <Label Grid.Row="17" Grid.Column="0" HorizontalTextAlignment="End"
+                       Text="Spouse Signature:" FontAttributes="Bold"/>
+                <Button Style="{StaticResource ClientSignatureStyle}"
+                       Command="{Binding DrawSpouseSignaturePageCommand}"
+                        BackgroundColor="Transparent"
+                       Grid.Row="17" Grid.Column="1"
+                       Text="Click here to add Signature"/>
+                <!--====-->
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="18" Grid.Column="1" 
+                       Text="{Binding SpouseSignatureErrorMsg}"
+                       IsVisible="{Binding SpouseSignatureError}"/>
+                <!--====-->
+                <BoxView Grid.Row="19" Grid.ColumnSpan="2"
+                         Color="{StaticResource PrimaryDark}"
+                         Style="{StaticResource Divider}"
+                         HeightRequest="3"/>
+                <!--====-->
+                <!--====-->
+                <Label Grid.Row="20" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Requested Date of Delivery:"  />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <renderer:CustomDatePicker  
+                    Grid.Row="20" Grid.Column="1" 
+                    Date="{Binding DeliveryDate}"
+                    Format="MM/dd/yyyy" 
+                    HasBackground="true">
+                </renderer:CustomDatePicker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="21" Grid.Column="1" 
+                       Text="{Binding DeliveryDateErrorMsg}"
+                       IsVisible="{Binding DeliveryDateError}"/>
+                <!--====-->
+                <Label Grid.Row="22" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Requested Time of Delivery:"  />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <TimePicker Grid.Row="22" Grid.Column="1" 
+                            Time="{Binding DeliveryTime}">
+                </TimePicker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="23" Grid.Column="1" 
+                       Text="{Binding DeliveryTimeErrorMsg}"
+                       IsVisible="{Binding DeliveryTimeError}"/>
+                <BoxView Grid.Row="24" Grid.ColumnSpan="2"
+                         Color="{StaticResource PrimaryDark}"
+                         Style="{StaticResource Divider}"
+                         HeightRequest="3"/>
+                <!--====-->
+                <!--====-->
+                <Label Grid.Row="25" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Closing Officer:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="13" Grid.Column="1" 
+                       Text="{Binding ClosingOfficer}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="26" Grid.Column="1" 
+                       Text="{Binding ClosingOfficerErrorMsg}"
+                       IsVisible="{Binding ClosingOfficerError}"/>
+                <!--====-->
+                <Label Grid.Row="27" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Date:"  />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <renderer:CustomDatePicker  
+                    Grid.Row="27" Grid.Column="1" 
+                    Date="{Binding ClosingOfficerDate}"
+                    MinimumDate="{x:Static sys:DateTime.Now}"
+                    Format="MM/dd/yyyy" 
+                    HasBackground="true">
+                </renderer:CustomDatePicker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="28" Grid.Column="1" 
+                       Text="{Binding ClosingOfficerDateErrorMsg}"
+                       IsVisible="{Binding ClosingOfficerDateError}"/>
+                <!--====-->
+                <Label Grid.Row="29" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Time:"  />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <TimePicker Grid.Row="29" Grid.Column="1" 
+                            Time="{Binding ClosingOfficerTime}">
+                </TimePicker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="30" Grid.Column="1" 
+                       Text="{Binding ClosingOfficerTimeErrorMsg}"
+                       IsVisible="{Binding ClosingOfficerTimeError}"/>
+                <!--====-->
+                <!--====-->
+                <Label Grid.Row="31" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Remarks:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="31" Grid.Column="1" 
+                       Text="{Binding ClosingOfficerRemarks}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="32" Grid.Column="1" 
+                       Text="{Binding ClosingOfficerRemarksErrorMsg}"
+                       IsVisible="{Binding ClosingOfficerRemarksError}"/>
+                <!--====-->
+                <BoxView Grid.Row="33" Grid.ColumnSpan="2"
+                         Color="{StaticResource PrimaryDark}"
+                         Style="{StaticResource Divider}"
+                         HeightRequest="3"/>
+                <!--====-->
+                <Label Grid.Row="34" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Branch Manager Signature:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button Style="{StaticResource ClientSignatureStyle}"
+                       Command="{Binding DrawBranchManagerSignaturePageCommand}"
+                        BackgroundColor="Transparent"
+                       Grid.Row="34" Grid.Column="1"
+                       Text="Click here to add Signature"/>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="35" Grid.Column="1" 
+                       Text="{Binding BranchManagerSignatureErrorMsg}"
+                       IsVisible="{Binding BranchManagerSignatureError}"/>
+                <!--====-->
+                <Label Grid.Row="36" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Date:"  />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <renderer:CustomDatePicker  
+                    Grid.Row="36" Grid.Column="1" 
+                    Date="{Binding BranchManagerDate}"
+                    MinimumDate="{x:Static sys:DateTime.Now}"
+                    Format="MM/dd/yyyy" 
+                    HasBackground="true">
+                </renderer:CustomDatePicker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="37" Grid.Column="1" 
+                       Text="{Binding BranchManagerDateErrorMsg}"
+                       IsVisible="{Binding BranchManagerDateError}"/>
+                <!--====-->
+                <Label Grid.Row="38" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Time:"  />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <TimePicker Grid.Row="38" Grid.Column="1" 
+                            Time="{Binding BranchManagerTime}">
+                </TimePicker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="39" Grid.Column="1" 
+                       Text="{Binding BranchManagerTimeErrorMsg}"
+                       IsVisible="{Binding BranchManagerTimeError}"/>
+                <!--====-->
+                <Label Grid.Row="40" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Remarks:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="40" Grid.Column="1" 
+                       Text="{Binding BranchManagerRemarks}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="41" Grid.Column="1" 
+                       Text="{Binding BranchManagerRemarksErrorMsg}"
+                       IsVisible="{Binding BranchManagerRemarksError}"/>
+                <!--====-->
+                <BoxView Grid.Row="42" Grid.ColumnSpan="2"
+                         Color="{StaticResource PrimaryDark}"
+                         Style="{StaticResource Divider}"
+                         HeightRequest="3"/>
+            </Grid>
+            <Button Text="Save"
+                    Command="{Binding SaveCustomerOrderCommand}"/>
+        </StackLayout>
+    </ScrollView>
+</base:BaseContentPage>

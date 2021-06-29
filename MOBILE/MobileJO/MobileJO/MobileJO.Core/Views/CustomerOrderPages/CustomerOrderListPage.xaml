@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MobileJO.Core.Views.CustomerOrderPages.CustomerOrderListPage"
+    x:Name="CustomerOrderList"
+    NavigationPage.HasBackButton="False"
+    Title="Customer Order List">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="home.png" Order="Primary" Priority="0" Command="{Binding GoToMenuPageCommand}"/>
+        <ToolbarItem Icon="plus.png" Order="Primary" Command="{Binding GoToFirstPageCommand}" />
+        <ToolbarItem Icon="search.png" Order="Primary"  Command="{Binding GoToSearch}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding _customerOrder}"
+                  SeparatorColor="LightGray" 
+                  HasUnevenRows="False"
+                  IsVisible="{Binding HasRecords}"
+                  SelectedItem="{Binding SelectedCustomerOrder, Mode=TwoWay}"
+                  RowHeight="70"
+                  CachingStrategy="RecycleElement"
+                  IsPullToRefreshEnabled="True"
+                  RefreshCommand="{Binding RefreshList}"
+                  IsRefreshing="{Binding IsRefreshing}">
+                <ListView.Header>
+                    <Label Text="No records found." 
+                       FontSize="Small"
+                       IsVisible="{Binding ShowError}"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       HorizontalTextAlignment="Center"/>
+                </ListView.Header>
+
+                <ListView.Footer>
+                    <Button Text="Load More" 
+                        Command="{Binding LoadMore}"
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="FillAndExpand"
+                        IsVisible="{Binding CanLoadMoreData}"
+                        BackgroundColor="LightGray"/>
+                </ListView.Footer>
+
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout  Margin="6" Padding="6"  Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                <Label Text="{Binding CustomerOrderNumber}"
+                                       TextColor="Black"
+                                       FontAttributes="Bold"
+                                       FontSize="Small"/>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                    <Label Text="{Binding CustomerOrderStatus}"
+                                       TextColor="Black"
+                                       FontSize="Small"/>
+                                    <Label Text="&#x2022;"
+                                       FontSize="35"
+                                       TextColor="{Binding Color}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</base:BaseContentPage>

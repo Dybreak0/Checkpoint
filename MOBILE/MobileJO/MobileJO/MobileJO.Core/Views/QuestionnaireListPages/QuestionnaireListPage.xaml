@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <base:BaseContentPage
-    xmlns:base="clr-namespace:MobileJO.Core.Base"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
     x:Class="MobileJO.Core.Views.QuestionnaireListPages.QuestionnaireListPage"
     x:Name="QuestionnaireList"
-    NavigationPage.HasBackButton="False"
     Title="Templates">
 
     <ContentPage.ToolbarItems>

@@ -27,6 +27,7 @@
 	                                StrokeColor="Black"
 	                                BackgroundColor="White"
                                     HeightRequest="550"
+                                    PromptText=""
                                     WidthRequest="250">
         </controls:SignaturePadView>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">

@@ -39,6 +39,7 @@ namespace MobileJO.Core.Utilities
             public const string TextRegex = @"^[a-zA-Z0-9@#$%&*()_=.,\s'-]+$";
             public const string JobOrderNumberPrefix = "JO-";
             public const string JobOrderNumberFormat = "000000.##";
+            public const string DecimalRegex = @"^\d*\.?\d*$";
             public const string EmailRegex = @"^(([^<>()\[\]\\*.,;:\s@]+(\.[^<>()\[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$";
             public const string ConformeRegex = @"^[a-zA-Z0-9-]+$";
             public const string Closed = "Closed";
@@ -181,6 +182,50 @@ namespace MobileJO.Core.Utilities
             public const string ForgetPasswordSent = "Email has been successfully sent.";
             public const string SaveResponseToLocalSuccess = "Record successfully saved on your local storage only. Please sync your data once the internet is available to save the new reponse to the server.";
             public const string FillUpCompanyBranch = "Please select a company and a branch.";
+
+            //CHECKPOINT MESSAGES
+            public const string LastNameRequired = "Last Name is required.";
+            public const string LastNameInvalid = "Last Name contains invalid characters.";
+            public const string FirstNameRequired = "First Name is required.";
+            public const string FirstNameInvalid = "First Name contains invalid characters.";
+            public const string MiddleNameRequired = "Middle Name is required.";
+            public const string MiddleNameInvalid = "Middle Name contains invalid characters.";
+            public const string SpouseRequired = "Spouse is required.";
+            public const string SpouseInvalid = "Spouse contains invalid characters.";
+            public const string DeliveryAddressRequired = " Delivery Address is required.";
+            public const string DeliveryAddressInvalid = " Delivery Address contains invalid characters.";
+            public const string TotalRequired = "Total is required.";
+            public const string TotalInvalid = "Total must be a number.";
+            public const string OfficialReceiptRequired = "Official Receipt is required.";
+            public const string OfficialReceiptInvalid = "Official Receipt contains invalid characters.";
+            public const string AmountRequired = "Amount is required.";
+            public const string AmountInvalid = "Amount contains invalid characters.";
+
+            public const string DesiredBrandModelRequired = "Brand/Model is required.";
+            public const string DesiredBrandModelInvalid = "Brand/Model contains invalid characters.";
+            public const string DesiredSerialNoRequired = "Serial No. is required.";
+            public const string DesiredSerialNoInvalid = "Serial No. contains invalid characters.";
+            public const string DesiredCodeRequired = "Code is required.";
+            public const string DesiredCodeInvalid = "Code contains invalid characters.";
+            public const string DesiredAmountRequired = "Amount is required.";
+            public const string DesiredAmountInvalid = "Amount must be a number.";
+            public const string DesiredAccountingRequired = "Accounting is required.";
+            public const string DesiredAccountingInvalid = "Accounting contains invalid characters.";
+
+            public const string ClientResCertNoRequired = "Client Res Cert No. is required.";
+            public const string ClientResCertNoInvalid = "Client Res Cert No. contains invalid characters.";
+            public const string ClientPlaceIssuedRequired = "Place Issued is required.";
+            public const string ClientPlaceIssuedInvalid = "Place Issued contains invalid characters.";
+            public const string SpouseResCertNoRequired = "Spouse Res Cert No. is required.";
+            public const string SpouseResCertNoInvalid = "Spouse Res Cert No. contains invalid characters.";
+            public const string SpousePlaceIssuedRequired = "Place Issued is required.";
+            public const string SpousePlaceIssuedInvalid = "Place Issued contains invalid characters.";
+            public const string ClosingOfficerRequired = "Closing Officer is required.";
+            public const string ClosingOfficerInvalid = "Closing Officer contains invalid characters.";
+            public const string ClosingOfficerRemarksRequired = "Closing Officer Remarks is required.";
+            public const string ClosingOfficerRemarksInvalid = "Closing Officer Remarks contains invalid characters.";
+            public const string BranchManagerRemarksRequired = "Branch Manager Remarks is required.";
+            public const string BranchManagerRemarksInvalid = "Branch Manager Remarks contains invalid characters.";
         }
 
         public static class Http
@@ -217,6 +262,8 @@ namespace MobileJO.Core.Utilities
 
             public static class Module
             {
+                public const string CustomerOrderAPI = "CustomerOrderAPI";
+
                 public const string AssignedCasesAPI = "AssignedCasesAPI";
                 public const string EmailJOAPI = "EmailJOAPI";
                 public const string UserAPI = "UserAPI";
@@ -231,6 +278,9 @@ namespace MobileJO.Core.Utilities
 
             public static class Method
             {
+                public const string CustomerOrderList = "list?{0}";
+                public const string CustomerOrderStatus = "customer_order_status";
+
                 public const string List = "list?{0}";
                 public const string View = "view?id={0}";
                 public const string Delete = "delete?id={0}";

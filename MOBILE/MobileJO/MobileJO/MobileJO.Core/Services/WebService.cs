@@ -1027,6 +1027,27 @@ namespace MobileJO.Core.Services
             }
         }
 
+        public async Task<PaginationCustomerOrderViewModel> GetCustomerOrderList(Dictionary<string, string> customerOrder)
+        {
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Constants.Common.JsonHeaderValue));
+            string action = string.Format(Constants.Api.Method.CustomerOrderList, Helpers.GetParamString(customerOrder));
+
+            var jsonCustomerOrderList = await this.HttpRequest(Constants.Http.WebUrl,
+                                                            Constants.Api.Module.CustomerOrderAPI,
+                                                            action,
+                                                            Constants.Http.Get,
+                                                            null);
+
+            try
+            {
+                return JsonConvert.DeserializeObject<PaginationCustomerOrderViewModel>(jsonCustomerOrderList);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        
         /// <summary>
         ///     HTTP Request function for retrieving all Job order application types
         /// </summary>
@@ -1072,7 +1093,24 @@ namespace MobileJO.Core.Services
                 throw ex;
             }
         }
+        public async Task<List<string>> GetCustomerOrderStatus()
+        {
+            try
+            {
+                _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Constants.Common.JsonHeaderValue));
 
+                var jsonSelectCO = await HttpRequest(Constants.Http.WebUrl,
+                                                            Constants.Api.Module.CustomerOrderAPI,
+                                                            Constants.Api.Method.CustomerOrderStatus,
+                                                            Constants.Http.Get,
+                                                            null);
+                return JsonConvert.DeserializeObject<List<string>>(jsonSelectCO);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         /// <summary>
         ///     HTTP Request function for retrieving Job order details
         /// </summary>

@@ -832,7 +832,7 @@ namespace MobileJO.Core.ViewModels
                 var presentationBundle = new MvxBundle(new Dictionary<string, string> { });
                 await _navigationService.Navigate<JobOrderViewModel, Dictionary<string, string>>(parameter, presentationBundle);
             }
-            catch(Exception)
+            catch(Exception ex)
             {
                 error = true;
             }

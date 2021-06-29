@@ -82,7 +82,7 @@
                                         <FileImageSource File="{Binding IconFile}" />
                                     </ImageButton.Source>
                                 </ImageButton>
-                        </StackLayout>
+                            </StackLayout>
                         </Grid>
                     </ViewCell>
                     <ViewCell Height="170">

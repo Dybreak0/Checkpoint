@@ -42,7 +42,135 @@
     </base:BaseContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <Grid>
+        <FlexLayout Wrap="Wrap" AlignContent="Center" AlignItems="Center" JustifyContent="Center" BackgroundColor="White">
+            <StackLayout Orientation="Vertical" Margin="35, 15">
+                <ImageButton 
+                        Source="installmentapplication.png"                            
+                        Command="{Binding GoToJobOrderList}"
+                        Aspect="Fill">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="0.8" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+                <Label HorizontalTextAlignment="Center" Text="Installment Application"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Margin="35, 15">
+                <ImageButton 
+                        Source="customerorder.png"                                                                      
+                        Command="{Binding GoToCustomerOrder}"
+                        Aspect="Fill">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="0.8" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+                <Label HorizontalTextAlignment="Center" Text="Customer Order"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Margin="35, 15">
+                <ImageButton                     
+                        Source="pettycashvoucher.png"                                                                      
+                        Command="{Binding GoToQuestionnaireList}"
+                        Aspect="Fill">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="0.8" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+                <Label HorizontalTextAlignment="Center" Text="Petty Cash Voucher"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Margin="35, 15">
+                <ImageButton 
+                        Source="approvals.png"                            
+                        Command="{Binding GoToQuestionnaireList}"
+                        Aspect="Fill">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="0.8" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+                <Label HorizontalTextAlignment="Center" Text="Approvals"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Margin="35, 15">
+                <ImageButton                     
+                        Source="syncdata.png"                                                                      
+                        Command="{Binding SyncCommand}"
+                        Aspect="Fill">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="0.8" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+                <Label HorizontalTextAlignment="Center" Text="Sync Data"/>
+            </StackLayout>
+        </FlexLayout>
+        <!--<Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -155,6 +283,6 @@
                     <Label Text=""/>
                 </StackLayout>
             </StackLayout>
-        </Grid>
+        </Grid>-->
     </ContentPage.Content>
 </base:BaseContentPage>

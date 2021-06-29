@@ -4,7 +4,7 @@
                 xmlns="http://xamarin.com/schemas/2014/forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 x:Class="MobileJO.Core.Views.Login.LoginPage"
-                NavigationPage.HasBackButton="False">
+                NavigationPage.HasNavigationBar="False">
     <base:BaseContentPage.Content>
         <ScrollView>
             <StackLayout 
@@ -13,13 +13,13 @@
             <Image>
                 <Image.Source>
                     <OnPlatform x:TypeArguments="FileImageSource">
-                        <On Platform="iOS" Value="logoicon02.png" />
-                        <On Platform="Android" Value="logoicon023x.png" />
+                        <On Platform="iOS" Value="logoaddessa.png" />
+                            <On Platform="Android" Value="logoaddessa.png" />
                     </OnPlatform>
                 </Image.Source>
             </Image>
 
-            <Label Text="Alliance Checkpoint"
+            <Label Text="Addessa Checkpoint"
                    FontSize="Large"
                    HorizontalOptions="Center"/>
             <StackLayout Padding="20"/>

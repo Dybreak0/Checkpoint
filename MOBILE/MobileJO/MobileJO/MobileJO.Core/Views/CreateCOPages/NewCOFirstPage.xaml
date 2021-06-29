@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+    x:Class="MobileJO.Core.Views.CreateCOPages.NewCOFirstPage"
+    Title="Customer Order Form">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Next" Command="{Binding GoToSecondPageCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView Margin="{StaticResource PageMargin}">
+        <StackLayout Orientation="Vertical"
+                     Spacing="-5">
+
+            <Grid RowSpacing="-5" ColumnSpacing="0" VerticalOptions="FillAndExpand">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="1"
+                       Text="All fields with (*) are required." 
+                       TextColor="Red" 
+                       FontSize="8"/>
+                <!--====-->
+                <Label Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Branch:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Picker Grid.Row="1" Grid.Column="1" 
+                        Title="Select a Branch"
+                        ItemsSource="{Binding Branch}"
+                        ItemDisplayBinding="{Binding Text}"
+                        SelectedItem="{Binding SelectedBranch}">
+                </Picker>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="2" Grid.Column="1" 
+                       Text="Branch is required."
+                       IsVisible="{Binding SelectedBranchError}"/>
+                <!--====-->
+                <Label Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Last Name:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="3" Grid.Column="1" 
+                       x:Name="customerOrderLastNameEntry"
+                       Text="{Binding LastName}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="4" Grid.Column="1" 
+                       Text="{Binding LastNameErrorMsg}"
+                       IsVisible="{Binding LastNameError}"/>
+                <!--====-->
+                <Label Grid.Row="5" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="First Name:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="5" Grid.Column="1" 
+                       x:Name="customerOrderFirstNameEntry"
+                       Text="{Binding FirstName}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="6" Grid.Column="1" 
+                       Text="{Binding FirstNameErrorMsg}"
+                       IsVisible="{Binding FirstNameError}"/>
+                <!--====-->
+                <Label Grid.Row="7" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Middle Name:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="7" Grid.Column="1" 
+                       x:Name="customerOrderMiddleNameEntry"
+                       Text="{Binding MiddleName}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="8" Grid.Column="1" 
+                       Text="{Binding MiddleNameErrorMsg}"
+                       IsVisible="{Binding MiddleNameError}"/>
+                <!--====-->
+                <Label Grid.Row="9" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Spouse Name:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="9" Grid.Column="1" 
+                       x:Name="customerOrderSpouseNameEntry"
+                       Text="{Binding Spouse}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="10" Grid.Column="1" 
+                       Text="{Binding SpouseErrorMsg}"
+                       IsVisible="{Binding SpouseError}"/>
+                <!--====-->
+                <Label Grid.Row="11" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Delivery Address:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="11" Grid.Column="1" 
+                       x:Name="customerOrderDeliveryEntry"
+                       Text="{Binding DeliveryAddress}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="12" Grid.Column="1" 
+                       Text="{Binding DeliveryAddressErrorMsg}"
+                       IsVisible="{Binding DeliveryAddressError}"/>
+                <!--====-->
+                <BoxView Grid.Row="13" Grid.ColumnSpan="2"
+                         Color="{StaticResource PrimaryDark}"
+                         Style="{StaticResource Divider}"
+                         HeightRequest="3"/>
+                <StackLayout Orientation="Horizontal" Grid.Row="14" Grid.ColumnSpan="2"
+                             VerticalOptions="Center">
+                    <Label Text="Brand/Model" WidthRequest="100" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                    <Label Text="Serial No." WidthRequest="100" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                    <Label Text="Code" WidthRequest="100" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                    <Label Text="Amount" WidthRequest="100" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                    <Label Text="(R)/AO}" WidthRequest="100" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                </StackLayout>
+                <!--====-->
+                <ListView Grid.Row="15" Grid.ColumnSpan="2"
+                              SeparatorColor="LightGray" 
+                              HasUnevenRows="True"
+                              CachingStrategy="RecycleElement"
+                              IsPullToRefreshEnabled="True"
+                              ItemsSource="{Binding UnitDesiredDDL}"
+                              SelectedItem="{Binding SelectedUnitDesired}"
+                              HeightRequest="{Binding Height}"
+                              >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding DesiredBrandModel}" WidthRequest="87" HorizontalTextAlignment="Center" FontSize="12"/>
+                                    <Label Text="{Binding DesiredSerialNo}" WidthRequest="87" HorizontalTextAlignment="Center" FontSize="12"/>
+                                    <Label Text="{Binding DesiredCode}" WidthRequest="87" HorizontalTextAlignment="Center" FontSize="12"/>
+                                    <Label Text="{Binding DesiredAmount}" WidthRequest="87" HorizontalTextAlignment="Center" FontSize="12"/>
+                                    <Label Text="{Binding DesiredAccounting}" WidthRequest="87" HorizontalTextAlignment="Center" FontSize="12"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <!--====-->
+                <Label Grid.Row="15" Grid.ColumnSpan="2"
+                       Style="{StaticResource errorStyle}"
+                       Text="Need atleast 1 Unit Desired." 
+                       IsVisible="{Binding UnitDesiredDDLError}"
+                       HorizontalTextAlignment="Center"/>
+                <StackLayout Orientation="Horizontal" Grid.Row="16" Grid.ColumnSpan="2" Margin="0, 10, 0, 0" HorizontalOptions="EndAndExpand">
+                    <!--====-->
+                    <Label FontAttributes="Bold">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="TOTAL:" />
+                                <Span Text="*" TextColor="Red"  />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Entry WidthRequest="100"
+                       Text="{Binding Total}"
+                       IsReadOnly="True"
+                       MaxLength="50">
+                    </Entry>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="17" Grid.ColumnSpan="2" HorizontalOptions="End">
+                    <!--====-->
+                    <Button Text="Remove" WidthRequest="50"
+                            BackgroundColor="Transparent"
+                            TextColor="{StaticResource Accent}"
+                            Padding="0"
+                    Command="{Binding RemoveUnitDesiredCommand}"/>
+                    <!--====-->
+                    <Button Text="Add" WidthRequest="50" 
+                            BackgroundColor="Transparent"
+                            TextColor="{StaticResource MediumGrayTextColor}"
+                    Command="{Binding AddUnitDesiredCommand}"/>
+                </StackLayout>
+                <!--====-->
+                <BoxView Grid.Row="18" Grid.ColumnSpan="2"
+                         Color="{StaticResource PrimaryDark}"
+                         Style="{StaticResource Divider}"
+                         HeightRequest="3"/>
+                <!--====-->
+                <Label Grid.Row="19" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Official Receipt:" />
+                            <Span Text="*" TextColor="Red"  />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Grid.Row="19" Grid.Column="1" 
+                       x:Name="customerOrderReceiptEntry"
+                       Text="{Binding OfficialReceipt}"
+                       MaxLength="50">
+                </Entry>
+                <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="20" Grid.Column="1" 
+                       Text="{Binding OfficialReceiptErrorMsg}"
+                       IsVisible="{Binding OfficialReceiptError}"/>
+            </Grid>
+
+        </StackLayout>
+    </ScrollView>
+</base:BaseContentPage>

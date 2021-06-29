@@ -11,7 +11,7 @@ using Xamarin.Forms;
 namespace MobileJO.Droid
 {
     [Activity(
-        Label = "Alliance Checkpoint", 
+        Label = "Addessa Checkpoint", 
         MainLauncher = true,
         Icon = "@drawable/logo",
         Theme = "@style/Theme.Splash",

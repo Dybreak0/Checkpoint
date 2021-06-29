@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:MobileJO.Core.Base"
+    xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+    x:Class="MobileJO.Core.Views.CreateCOPages.AddUnitDesiredPage"
+    NavigationPage.HasBackButton="False"
+    Title="Add Unit Desired">
+
+    <StackLayout Margin="{StaticResource PageMargin}" Orientation="Vertical">
+        <Button Text="Scan Barcode" 
+                Command="{Binding GoToSelectedCasesPageCommand}"/>
+        <Grid RowSpacing="-5" ColumnSpacing="0" VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
+
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
+
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
+
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
+
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <!--====-->
+            <Label Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Brand/Model:" />
+                        <Span Text="*" TextColor="Red"  />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Entry Grid.Row="0" Grid.Column="1" 
+                       x:Name="brandModelEntry"
+                       Text="{Binding DesiredBrandModel}"
+                       MaxLength="50">
+            </Entry>
+            <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="1" Grid.Column="1" 
+                       Text="{Binding DesiredBrandModelErrorMsg}"
+                       IsVisible="{Binding DesiredBrandModelError}"/>
+            <!--====-->
+            <Label Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Serial No.:" />
+                        <Span Text="*" TextColor="Red"  />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Entry Grid.Row="2" Grid.Column="1" 
+                       x:Name="serialNoEntry"
+                       Text="{Binding DesiredSerialNo}"
+                       MaxLength="50">
+            </Entry>
+            <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="3" Grid.Column="1" 
+                       Text="{Binding DesiredSerialNoErrorMsg}"
+                       IsVisible="{Binding DesiredSerialNoError}"/>
+            <!--====-->
+            <Label Grid.Row="4" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Code:" />
+                        <Span Text="*" TextColor="Red"  />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Entry Grid.Row="4" Grid.Column="1" 
+                       x:Name="codeEntry"
+                       Text="{Binding DesiredCode}"
+                       MaxLength="50">
+            </Entry>
+            <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="5" Grid.Column="1" 
+                       Text="{Binding DesiredCodeErrorMsg}"
+                       IsVisible="{Binding DesiredCodeError}"/>
+            <!--====-->
+            <Label Grid.Row="6" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Amount:" />
+                        <Span Text="*" TextColor="Red"  />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Entry Grid.Row="6" Grid.Column="1" 
+                       x:Name="amountEntry"
+                       Text="{Binding DesiredAmount}"
+                       MaxLength="50">
+            </Entry>
+            <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="7" Grid.Column="1" 
+                       Text="{Binding DesiredAmountErrorMsg}"
+                       IsVisible="{Binding DesiredAmountError}"/>
+            <!--====-->
+            <Label Grid.Row="8" Grid.Column="0" HorizontalTextAlignment="End"
+                       FontAttributes="Bold">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Accounting:" />
+                        <Span Text="*" TextColor="Red"  />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Entry Grid.Row="8" Grid.Column="1" 
+                       x:Name="accountingEntry"
+                       Text="{Binding DesiredAccounting}"
+                       MaxLength="50">
+            </Entry>
+            <Label Style="{StaticResource errorStyle}"
+                       Grid.Row="9" Grid.Column="1" 
+                       Text="{Binding DesiredAccountingtErrorMsg}"
+                       IsVisible="{Binding DesiredAccountingError}"/>
+        </Grid>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Back" Command="{Binding CloseCommand}"
+                    BackgroundColor="{StaticResource MediumGrayTextColor}"/>
+            <Button Text="Add" Command="{Binding SaveUnitDesired}"/>
+        </StackLayout>
+    </StackLayout>
+
+</base:BaseContentPage>

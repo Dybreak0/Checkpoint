@@ -135,6 +135,12 @@ namespace MobileJO.Core.ViewModels
             set => _settings.PersistentText = value;
         }
 
+        public IMvxCommand GoToCustomerOrder => new MvxCommand(async () =>
+        {
+            var param = new Dictionary<string, string>();
+            await _navigationService.Navigate<CustomerOrderListViewModel, Dictionary<string, string>>(param);
+        });
+
         public IMvxCommand GoToJobOrderList => new MvxCommand(async () =>
         {
             var param = new Dictionary<string, string>();
