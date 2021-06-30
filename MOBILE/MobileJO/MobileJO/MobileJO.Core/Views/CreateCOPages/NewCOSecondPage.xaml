@@ -156,7 +156,7 @@
                        Command="{Binding DrawClientSignaturePageCommand}"
                         BackgroundColor="Transparent"
                        Grid.Row="8" Grid.Column="1"
-                       Text="Click here to add Client Signature"/>
+                       Text="Click here to add Signature"/>
                 <!--====-->
                 <Label Style="{StaticResource errorStyle}"
                        Grid.Row="9" Grid.Column="1" 
@@ -295,7 +295,7 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Entry Grid.Row="13" Grid.Column="1" 
+                <Entry Grid.Row="25" Grid.Column="1" 
                        Text="{Binding ClosingOfficer}"
                        MaxLength="50">
                 </Entry>

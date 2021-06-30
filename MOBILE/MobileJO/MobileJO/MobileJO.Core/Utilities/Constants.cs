@@ -23,7 +23,11 @@ namespace MobileJO.Core.Utilities
             public const string StringFalse = "false";
             public const string All = "All";
             public const string EmailPatter = "^[\\w-\\.]+@([\\w -]+\\.)+[\\w-]{2,4}$";
-            public const string SignatureNameExtension = "signature.png";            
+            public const string SignatureNameExtension = "signature.png";
+            public const string ClientSignatureNameExtension = "clientsignature.png";
+            public const string SpouseSignatureNameExtension = "spousesignature.png";
+            public const string BranchManagerSignatureNameExtension = "managersignature.png";
+
             public const string DateFormat = "MM/dd/yyyy ";
             public const string OK = "OK";
             public const string AttachmentOne = "AttachmentOne";
@@ -184,12 +188,8 @@ namespace MobileJO.Core.Utilities
             public const string FillUpCompanyBranch = "Please select a company and a branch.";
 
             //CHECKPOINT MESSAGES
-            public const string LastNameRequired = "Last Name is required.";
-            public const string LastNameInvalid = "Last Name contains invalid characters.";
-            public const string FirstNameRequired = "First Name is required.";
-            public const string FirstNameInvalid = "First Name contains invalid characters.";
-            public const string MiddleNameRequired = "Middle Name is required.";
-            public const string MiddleNameInvalid = "Middle Name contains invalid characters.";
+            public const string NameRequired = "Name is required.";
+            public const string NameInvalid = "Name contains invalid characters.";
             public const string SpouseRequired = "Spouse is required.";
             public const string SpouseInvalid = "Spouse contains invalid characters.";
             public const string DeliveryAddressRequired = " Delivery Address is required.";
@@ -226,6 +226,10 @@ namespace MobileJO.Core.Utilities
             public const string ClosingOfficerRemarksInvalid = "Closing Officer Remarks contains invalid characters.";
             public const string BranchManagerRemarksRequired = "Branch Manager Remarks is required.";
             public const string BranchManagerRemarksInvalid = "Branch Manager Remarks contains invalid characters.";
+
+            public const string ClientSignatureRequired = "Client Signature is required.";
+            public const string SpouseSignatureRequired = "Spouse Signature is required.";
+            public const string BranchManagerRequired = "Branch Manager Signature is required.";
         }
 
         public static class Http
@@ -280,6 +284,8 @@ namespace MobileJO.Core.Utilities
             {
                 public const string CustomerOrderList = "list?{0}";
                 public const string CustomerOrderStatus = "customer_order_status";
+                public const string SaveCustomerOrder = "createCustomerOrder";
+
 
                 public const string List = "list?{0}";
                 public const string View = "view?id={0}";

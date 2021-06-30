@@ -12,6 +12,7 @@ using MobileJO.Core.ViewModels.QuestionnaireListViewModels;
 using MobileJO.Core.ViewModels.ResponseListViewModels;
 using MobileJO.Core.ViewModels.FieldViewModels;
 using Plugin.Media.Abstractions;
+using MobileJO.Core.ViewModels.CustomerOrderViewModels;
 
 namespace MobileJO.Core.Contracts
 {
@@ -38,14 +39,12 @@ namespace MobileJO.Core.Contracts
         Task<bool> Login(UserCredentialsModel user);
         Task<ForgotPasswordResponseModel> ResetPassword(EmailModel emailModel); 
         Task<PaginationViewModel> GetJobOrderList(Dictionary<string, string> jobOrder);
-        Task<PaginationCustomerOrderViewModel> GetCustomerOrderList(Dictionary<string, string> customerOrder);
 
         Task<JobOrder> JobOrderDetail(int id);
         Task<bool> DeleteJobOrder(int id);
         Task<RevertModel> GetRevertCount(int id);
         Task<bool> RevertJobOrder(int id);
         Task<List<string>> GetJobOrderStatus();
-        Task<List<string>> GetCustomerOrderStatus();
         Task<List<TaggedCaseModel>> TaggedCasesList(Dictionary<string, string> taggedCases);
         Task<TaggedCase> TagCaseDetail(int id);
         Task<List<JobOrderBillingTypeModel>> GetBillingList(int jobOrderID);
@@ -70,5 +69,11 @@ namespace MobileJO.Core.Contracts
         Task<List<QuestionnaireViewModel>> GetAllTemplates();
         Task<List<ResponseAnswerDetailsViewModel>> GetAllResponseByTemplateID(int templateID);
         Task<DataViewModel> UploadMedia(MediaFile uploadedFile);
+
+        //CUSTOMER ORDER
+        Task<List<string>> GetCustomerOrderStatus();
+        Task<PaginationCustomerOrderViewModel> GetCustomerOrderList(Dictionary<string, string> customerOrder);
+        Task<CustomerOrderDetailsViewModel> SaveCustomerOrderDetails(CustomerOrderDetailsViewModel customerOrderViewModel);
+
     }
 }

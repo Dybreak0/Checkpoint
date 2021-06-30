@@ -17,13 +17,5 @@ namespace MobileJO.Core.Views.CreateCOPages
             Content = null;
             Content = CreateLoadingIndicatorRelativeLayout(tempContent);
         }
-        protected override bool OnBackButtonPressed()
-        {
-            var vm = (NewCOSecondViewModel)DataContext;
-
-            vm.CloseCommand.Execute();
-
-            return true;
-        }
     }
 }

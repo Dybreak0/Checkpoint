@@ -4,6 +4,7 @@ using MobileJO.Core.Models;
 using MobileJO.Core.Utilities;
 using MobileJO.Core.ViewModels;
 using MobileJO.Core.ViewModels.Common;
+using MobileJO.Core.ViewModels.CustomerOrderViewModels;
 using MobileJO.Core.ViewModels.FieldViewModels;
 using MobileJO.Core.ViewModels.QuestionnaireListViewModels;
 using MobileJO.Core.ViewModels.ResponseListViewModels;
@@ -1027,27 +1028,6 @@ namespace MobileJO.Core.Services
             }
         }
 
-        public async Task<PaginationCustomerOrderViewModel> GetCustomerOrderList(Dictionary<string, string> customerOrder)
-        {
-            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Constants.Common.JsonHeaderValue));
-            string action = string.Format(Constants.Api.Method.CustomerOrderList, Helpers.GetParamString(customerOrder));
-
-            var jsonCustomerOrderList = await this.HttpRequest(Constants.Http.WebUrl,
-                                                            Constants.Api.Module.CustomerOrderAPI,
-                                                            action,
-                                                            Constants.Http.Get,
-                                                            null);
-
-            try
-            {
-                return JsonConvert.DeserializeObject<PaginationCustomerOrderViewModel>(jsonCustomerOrderList);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        
         /// <summary>
         ///     HTTP Request function for retrieving all Job order application types
         /// </summary>
@@ -1093,24 +1073,7 @@ namespace MobileJO.Core.Services
                 throw ex;
             }
         }
-        public async Task<List<string>> GetCustomerOrderStatus()
-        {
-            try
-            {
-                _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Constants.Common.JsonHeaderValue));
 
-                var jsonSelectCO = await HttpRequest(Constants.Http.WebUrl,
-                                                            Constants.Api.Module.CustomerOrderAPI,
-                                                            Constants.Api.Method.CustomerOrderStatus,
-                                                            Constants.Http.Get,
-                                                            null);
-                return JsonConvert.DeserializeObject<List<string>>(jsonSelectCO);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
         /// <summary>
         ///     HTTP Request function for retrieving Job order details
         /// </summary>
@@ -1756,6 +1719,67 @@ namespace MobileJO.Core.Services
             {
                 throw ex;
             }
+        }
+
+        //CUSTOMER ORDER
+        public async Task<List<string>> GetCustomerOrderStatus()
+        {
+            try
+            {
+                _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Constants.Common.JsonHeaderValue));
+
+                var jsonSelectCO = await HttpRequest(Constants.Http.WebUrl,
+                                                            Constants.Api.Module.CustomerOrderAPI,
+                                                            Constants.Api.Method.CustomerOrderStatus,
+                                                            Constants.Http.Get,
+                                                            null);
+                return JsonConvert.DeserializeObject<List<string>>(jsonSelectCO);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<PaginationCustomerOrderViewModel> GetCustomerOrderList(Dictionary<string, string> customerOrder)
+        {
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Constants.Common.JsonHeaderValue));
+            string action = string.Format(Constants.Api.Method.CustomerOrderList, Helpers.GetParamString(customerOrder));
+
+            var jsonCustomerOrderList = await this.HttpRequest(Constants.Http.WebUrl,
+                                                            Constants.Api.Module.CustomerOrderAPI,
+                                                            action,
+                                                            Constants.Http.Get,
+                                                            null);
+
+            try
+            {
+                return JsonConvert.DeserializeObject<PaginationCustomerOrderViewModel>(jsonCustomerOrderList);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<CustomerOrderDetailsViewModel> SaveCustomerOrderDetails(CustomerOrderDetailsViewModel customerOrderViewModel)
+        {
+            try
+            {
+
+                _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Constants.Common.JsonHeaderValue));
+
+                string jsonResponse = await HttpRequest(Constants.Http.WebUrl,
+                                                     Constants.Api.Module.CustomerOrderAPI,
+                                                     Constants.Api.Method.SaveCustomerOrder,
+                                                     Constants.Http.Post,
+                                                     JsonConvert.SerializeObject(customerOrderViewModel));
+
+                return JsonConvert.DeserializeObject<CustomerOrderDetailsViewModel>(jsonResponse); ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
 }

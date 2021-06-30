@@ -8,17 +8,14 @@ namespace MobileJO.Core.ViewModels.FieldCOViewModels
     {
 
         public int SelectedBranch { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
+        public string Name { get; set; }
         public string Spouse { get; set; }
         public string DeliveryAddress { get; set; }
 
         public ObservableCollection<UnitDesiredModel> UnitDesiredDDL { get; set; }
 
-        public decimal Total { get; set; }
         public string OfficialReceipt { get; set; }
+        public decimal Total { get; set; }
 
-        public string ClientResCertNo { get; set; }
     }
 }

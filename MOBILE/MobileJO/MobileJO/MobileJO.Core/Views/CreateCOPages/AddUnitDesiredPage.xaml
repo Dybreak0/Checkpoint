@@ -132,7 +132,7 @@
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
             <Button Text="Back" Command="{Binding CloseCommand}"
                     BackgroundColor="{StaticResource MediumGrayTextColor}"/>
-            <Button Text="Add" Command="{Binding SaveUnitDesired}"/>
+            <Button Text="{Binding Mode}" Command="{Binding SaveUnitDesired}"/>
         </StackLayout>
     </StackLayout>
 

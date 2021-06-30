@@ -2,6 +2,7 @@
 {
     public class UnitDesiredModel
     {
+        public int UnitDesiredID { get; set; }
         public string DesiredBrandModel { get; set; }
         public string DesiredSerialNo { get; set; }
         public string DesiredCode { get; set; }

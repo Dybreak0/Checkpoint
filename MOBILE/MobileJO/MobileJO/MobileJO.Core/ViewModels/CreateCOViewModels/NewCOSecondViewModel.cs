@@ -3,6 +3,7 @@ using MobileJO.Core.Base;
 using MobileJO.Core.Contracts;
 using MobileJO.Core.Models;
 using MobileJO.Core.Utilities;
+using MobileJO.Core.ViewModels.CustomerOrderViewModels;
 using MobileJO.Core.ViewModels.FieldCOViewModels;
 using MvvmCross.Base;
 using MvvmCross.Commands;
@@ -127,6 +128,8 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
         public string BranchManagerTimeErrorMsg { get; set; }
         public string BranchManagerRemarksErrorMsg { get; set; }
 
+        List<UnitDesiredModel> deserializedUnitDesired = new List<UnitDesiredModel>();
+        public List<UnitDesiredModel> UnitDesireds { get; private set; } = new List<UnitDesiredModel>();
         public override void Prepare(Dictionary<string, string> parameter)
         {
             _parameter = parameter;
@@ -157,6 +160,15 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
             }
             else { ClientPlaceIssuedError = false; }
 
+            if (string.IsNullOrEmpty(secondPageFields.ClientSignature))
+            {
+                ClientSignatureErrorMsg = Constants.Messages.ClientSignatureRequired;
+                ClientSignatureError = true;
+                flag = false;
+            }
+            else { ClientSignatureError = false; }
+
+
             if (string.IsNullOrWhiteSpace(secondPageFields.SpouseResCertNo) || !Regex.IsMatch(secondPageFields.SpouseResCertNo, Constants.Common.TextRegex))
             {
                 SpouseResCertNoErrorMsg = string.IsNullOrWhiteSpace(secondPageFields.SpouseResCertNo) ?
@@ -177,15 +189,14 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
             }
             else { SpousePlaceIssuedError = false; }
 
-            if (string.IsNullOrWhiteSpace(secondPageFields.BranchManagerRemarks) || !Regex.IsMatch(secondPageFields.BranchManagerRemarks, Constants.Common.TextRegex))
+            if (string.IsNullOrEmpty(secondPageFields.SpouseSignature))
             {
-                BranchManagerRemarksErrorMsg = string.IsNullOrWhiteSpace(secondPageFields.BranchManagerRemarks) ?
-                                                                                            Constants.Messages.BranchManagerRemarksRequired :
-                                                                                            Constants.Messages.BranchManagerRemarksInvalid;
-                BranchManagerRemarksError = true;
+                SpouseSignatureErrorMsg = Constants.Messages.SpouseSignatureRequired;
+                SpouseSignatureError = true;
                 flag = false;
             }
-            else { BranchManagerRemarksError = false; }
+            else { SpouseSignatureError = false; }
+
 
             if (string.IsNullOrWhiteSpace(secondPageFields.ClosingOfficer) || !Regex.IsMatch(secondPageFields.ClosingOfficer, Constants.Common.TextRegex))
             {
@@ -195,7 +206,25 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
                 ClosingOfficerError = true;
                 flag = false;
             }
+            else { ClosingOfficerError = false; }
+
+            if (string.IsNullOrWhiteSpace(secondPageFields.ClosingOfficerRemarks) || !Regex.IsMatch(secondPageFields.ClosingOfficerRemarks, Constants.Common.TextRegex))
+            {
+                ClosingOfficerRemarksErrorMsg = string.IsNullOrWhiteSpace(secondPageFields.ClosingOfficerRemarks) ?
+                                                                                            Constants.Messages.ClosingOfficerRemarksRequired :
+                                                                                            Constants.Messages.ClosingOfficerRemarksInvalid;
+                ClosingOfficerRemarksError = true;
+                flag = false;
+            }
             else { ClosingOfficerRemarksError = false; }
+
+            if (string.IsNullOrEmpty(secondPageFields.BranchManagerSignature))
+            {
+                BranchManagerSignatureErrorMsg = Constants.Messages.BranchManagerRequired;
+                BranchManagerSignatureError = true;
+                flag = false;
+            }
+            else { BranchManagerSignatureError = false; }
 
             if (string.IsNullOrWhiteSpace(secondPageFields.BranchManagerRemarks) || !Regex.IsMatch(secondPageFields.BranchManagerRemarks, Constants.Common.TextRegex))
             {
@@ -206,29 +235,6 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
                 flag = false;
             }
             else { BranchManagerRemarksError = false; }
-
-
-            if(string.IsNullOrEmpty(secondPageFields.ClientSignature))
-            {
-                ClientSignatureError = true;
-                flag = false;
-            }
-            else { ClientSignatureError = false; }
-
-            if (string.IsNullOrEmpty(secondPageFields.SpouseSignature))
-            {
-                SpouseSignatureError = true;
-                flag = false;
-            }
-            else { SpouseSignatureError = false; }
-
-            if (string.IsNullOrEmpty(secondPageFields.BranchManagerSignature))
-            {
-                BranchManagerSignatureError = true;
-                flag = false;
-            }
-            else { BranchManagerSignatureError = false; }
-
 
             return flag;
         }
@@ -240,6 +246,8 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
             {
                 if (IsBusy)
                     return;
+
+                IsBusy = true;
                 var secondPageVM = new SecondPageCOViewModel
                 {
                     ClientResCertNo = ClientResCertNo,
@@ -272,7 +280,7 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
                     secondPageVM.ClientPlaceIssued.Trim();
 
                     secondPageVM.SpouseResCertNo.Trim();
-                    secondPageVM.SpousePlaceIssued.Trim();
+                    secondPageVM.SpousePlaceIssued.Trim();  
 
                     secondPageVM.ClosingOfficerRemarks.Trim();
                     secondPageVM.BranchManagerRemarks.Trim();
@@ -284,13 +292,109 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
 
                     if (confirmSave)
                     {
+                        FirstPageCOViewModel deserializedFirstPage = _serializer.DeserializeObject<FirstPageCOViewModel>(_parameter[Constants.Params.FirstPage]);
+                        string serializedUnitDesired = _serializer.SerializeObject(deserializedFirstPage.UnitDesiredDDL);
+                        string customerOrderStatus = !string.IsNullOrEmpty(BranchManagerSignature) ? "Approved" : "Pending";
+                        int userID = int.Parse(CrossSecureStorage.Current.GetValue(Constants.AppSettings.UserID));
+                        int insertID = 0;
+                        if (NetworkCheck.HasInternet())
+                        {
+                            deserializedUnitDesired = _serializer.DeserializeObject<List<UnitDesiredModel>>(serializedUnitDesired);
+                            foreach (var unit in deserializedUnitDesired)
+                            {
+                                UnitDesireds.Add(unit);
+                            }
+                            FileViewModel clientSignatureModel = null;
 
+                            if (!string.IsNullOrEmpty(secondPageVM.ClientSignature))
+                            {
+                                var signatureStringArray = secondPageVM.ClientSignature.Split(Constants.SpecialCharacters.CharComma);
+                                var signatureBytes = signatureStringArray.Select(byte.Parse).ToArray();
+
+                                clientSignatureModel = new FileViewModel
+                                {
+                                    FileName = Constants.Common.ClientSignatureNameExtension,
+                                    FileDataArray = signatureBytes
+                                };
+                            }
+                            FileViewModel spouseSignatureModel = null;
+
+                            if (!string.IsNullOrEmpty(secondPageVM.SpouseSignature))
+                            {
+                                var signatureStringArray = secondPageVM.SpouseSignature.Split(Constants.SpecialCharacters.CharComma);
+                                var signatureBytes = signatureStringArray.Select(byte.Parse).ToArray();
+
+                                spouseSignatureModel = new FileViewModel
+                                {
+                                    FileName = Constants.Common.SpouseSignatureNameExtension,
+                                    FileDataArray = signatureBytes
+                                };
+                            }
+                            FileViewModel branchManagerSignatureModel = null;
+
+                            if (!string.IsNullOrEmpty(secondPageVM.BranchManagerSignature))
+                            {
+                                var signatureStringArray = secondPageVM.BranchManagerSignature.Split(Constants.SpecialCharacters.CharComma);
+                                var signatureBytes = signatureStringArray.Select(byte.Parse).ToArray();
+
+                                branchManagerSignatureModel = new FileViewModel
+                                {
+                                    FileName = Constants.Common.BranchManagerSignatureNameExtension,
+                                    FileDataArray = signatureBytes
+                                };
+                            }
+
+                            CustomerOrderDetailsViewModel customerOrderViewModel = new CustomerOrderDetailsViewModel
+                            {
+                                CustomerOrderNumber = null,
+                                BranchID = deserializedFirstPage.SelectedBranch,
+                                CustomerOrderStatus = "Pending",
+                                Name = deserializedFirstPage.Name,
+                                SpouseName = deserializedFirstPage.Spouse,
+                                DeliveryAddress = deserializedFirstPage.DeliveryAddress,
+                                OfficialReceipt = deserializedFirstPage.OfficialReceipt,
+                                TotalAmount = deserializedFirstPage.Total.ToString(),
+                                ClientResCertNo = secondPageVM.ClientResCertNo,
+                                ClientPlaceIssued = deserializedFirstPage.Name,
+                                ClientDate = secondPageVM.ClientDate,
+                                SpouseResCertNo = secondPageVM.SpouseResCertNo,
+                                SpousePlaceIssued = secondPageVM.SpousePlaceIssued,
+                                SpouseDate = secondPageVM.SpouseDate,
+                                DeliveryDate = secondPageVM.DeliveryDate,
+                                DeliveryTime = secondPageVM.DeliveryTime,
+                                ClosingOfficer = secondPageVM.ClosingOfficer,
+                                ClosingOfficerDate = secondPageVM.ClosingOfficerDate,
+                                ClosingOfficerTime = secondPageVM.ClosingOfficerTime,
+                                ClosingOfficerRemarks = secondPageVM.ClosingOfficerRemarks,
+                                BranchManagerDate = secondPageVM.BranchManagerDate,
+                                BranchManagerTime = secondPageVM.BranchManagerTime,
+                                BranchManagerRemarks = secondPageVM.BranchManagerRemarks,
+                                UnitDesireds = UnitDesireds,
+                                ClientSignature = clientSignatureModel,
+                                SpouseSignature = spouseSignatureModel,
+                                BranchManagerSignature = branchManagerSignatureModel
+                            };
+
+                            CustomerOrderDetailsViewModel createCOResponse = await _webService.SaveCustomerOrderDetails(customerOrderViewModel);
+
+                            await _userDialogs.AlertAsync(Constants.Messages.SaveToServerSuccess,
+                                                      Constants.Modal.InfoMessage,
+                                                      Constants.Common.OK);
+                        }
+                        else
+                        {
+                            //OFFLINE
+                        }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 error = true;
+            }
+            finally
+            {
+                IsBusy = false;
             }
 
             if (error)
@@ -299,29 +403,6 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
                 await _userDialogs.AlertAsync(localizedMessage, Constants.Modal.Warning, Constants.Common.OK);
             }
         });
-
-        public async Task SaveSignature(int jobOrderID)
-        {
-            var signatureStringArray = _signatureBytes.Split(Constants.SpecialCharacters.CharComma);
-
-            var signatureBytes = signatureStringArray.Select(byte.Parse).ToArray();
-
-            var signatureFilename = string.Concat(jobOrderID, Constants.Common.SignatureNameExtension);
-
-            var signaturePath = string.Concat(jobOrderID, Constants.Uploads.SignatureTargetFolder);
-
-            LocalJobOrder joForUpdate = MvxApp.Database.GetJobOrderAsync(jobOrderID);
-
-            if (joForUpdate != null)
-            {
-                joForUpdate.ClientSignature = signatureFilename;
-                joForUpdate.StatusID = (int)Constants.Status.Signed;
-
-                MvxApp.Database.SaveJobOrderAsync(joForUpdate);
-            }
-
-            await Data.FileAppData.SaveFile(signatureBytes, signatureFilename, signaturePath);
-        }
 
         public IMvxCommand DrawClientSignaturePageCommand => new MvxAsyncCommand(async () =>
         {
@@ -338,6 +419,7 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
                 {
                     IconFile = "add_button.png";
                     ClientSignature = null;
+                    DrawClientSignaturePageCommand.Execute();
                 }
             }
             else
@@ -366,6 +448,7 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
                 {
                     IconFile = "add_button.png";
                     SpouseSignature = null;
+                    DrawSpouseSignaturePageCommand.Execute();
                 }
             }
             else
@@ -394,6 +477,7 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
                 {
                     IconFile = "add_button.png";
                     BranchManagerSignature = null;
+                    DrawBranchManagerSignaturePageCommand.Execute();
                 }
             }
             else

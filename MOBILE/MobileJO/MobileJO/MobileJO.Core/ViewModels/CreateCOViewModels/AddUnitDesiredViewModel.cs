@@ -30,6 +30,8 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
 
         private UnitDesiredModel _addedUnitDesired { get; set; }
 
+        private Dictionary<string, string> _parameter;
+
         public AddUnitDesiredViewModel(IMvxNavigationService navigationService,
                                         IAppSettings settings,
                                         IUserDialogs userDialogs,
@@ -43,6 +45,8 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
             _localizeService = localizeService;
         }
         private string unitDesiredJsonText { get; set; }
+
+        public int UnitDesiredID { get; set; }
         public string DesiredBrandModel { get; set; }
         public string DesiredSerialNo { get; set; }
         public string DesiredCode { get; set; }
@@ -63,6 +67,23 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
         public string DesiredAmountErrorMsg { get; set; }
         public string DesiredAccountingtErrorMsg { get; set; }
 
+        public string Mode { get; set; }
+        public override void Prepare(Dictionary<string, string> parameter)
+        {
+            _parameter = parameter;
+            Mode = _parameter["Mode"];
+            if (Mode == "Edit")
+            {
+                UnitDesiredModel deserializedUnitDesired = _serializer.DeserializeObject<UnitDesiredModel>(_parameter["SelectedUnitDesired"]);
+                UnitDesiredID = deserializedUnitDesired.UnitDesiredID;
+                DesiredBrandModel = deserializedUnitDesired.DesiredBrandModel;
+                DesiredSerialNo = deserializedUnitDesired.DesiredSerialNo;
+                DesiredCode = deserializedUnitDesired.DesiredCode;
+                DesiredAmount = deserializedUnitDesired.DesiredAmount;
+                DesiredAccounting = deserializedUnitDesired.DesiredAccounting;
+            }
+        }
+
         public IMvxCommand CloseCommand => new MvxCommand(async () =>
         {
             await _navigationService.Close(this, unitDesiredJsonText);
@@ -78,33 +99,49 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
                     return;
                 IsBusy = true;
 
-                var unitDesired = new UnitDesiredModel
+                UnitDesiredModel unitDesired = new UnitDesiredModel();
+                if (Mode == "Add")
                 {
-                    DesiredBrandModel = DesiredBrandModel,
-                    DesiredSerialNo = DesiredSerialNo,
-                    DesiredCode = DesiredCode,
-                    DesiredAmount = DesiredAmount,
-                    DesiredAccounting = DesiredAccounting
-                };
-
-                if (IsValidFields(unitDesired))
-                {
-                    unitDesired.DesiredBrandModel.Trim();
-                    unitDesired.DesiredSerialNo.Trim();
-                    unitDesired.DesiredCode.Trim();
-                    unitDesired.DesiredAmount.Trim();
-                    unitDesired.DesiredAccounting.Trim();
-
-                    var unitDesiredJsonText = _serializer.SerializeObject(unitDesired);
-
-                    DesiredBrandModelError = false;
-                    DesiredSerialNoError = false;
-                    DesiredCodeError = false;
-                    DesiredAmountError = false;
-                    DesiredAccountingError = false;
-
-                    await _navigationService.Close(this, unitDesiredJsonText);
+                    unitDesired = new UnitDesiredModel
+                    {
+                        DesiredBrandModel = DesiredBrandModel,
+                        DesiredSerialNo = DesiredSerialNo,
+                        DesiredCode = DesiredCode,
+                        DesiredAmount = DesiredAmount,
+                        DesiredAccounting = DesiredAccounting
+                    };
                 }
+                else if (Mode == "Edit")
+                {
+                    unitDesired = new UnitDesiredModel
+                    {
+                        UnitDesiredID = UnitDesiredID,
+                        DesiredBrandModel = DesiredBrandModel,
+                        DesiredSerialNo = DesiredSerialNo,
+                        DesiredCode = DesiredCode,
+                        DesiredAmount = DesiredAmount,
+                        DesiredAccounting = DesiredAccounting
+                    };
+                }
+
+                 if (IsValidFields(unitDesired))
+                 {
+                      unitDesired.DesiredBrandModel.Trim();
+                      unitDesired.DesiredSerialNo.Trim();
+                      unitDesired.DesiredCode.Trim();
+                      unitDesired.DesiredAmount.Trim();
+                      unitDesired.DesiredAccounting.Trim();
+
+                      var unitDesiredJsonText = _serializer.SerializeObject(unitDesired);
+
+                      DesiredBrandModelError = false;
+                      DesiredSerialNoError = false;
+                      DesiredCodeError = false;
+                      DesiredAmountError = false;
+                      DesiredAccountingError = false;
+
+                      await _navigationService.Close(this, unitDesiredJsonText);
+                 }
             }
             catch (Exception)
             {

@@ -15,6 +15,8 @@ using Xamarin.Forms;
 using System.Windows.Input;
 using MobileJO.Core.ViewModels.FieldCOViewModels;
 using MobileJO.Core.ViewModels.Common;
+using System.Linq;
+using System.Globalization;
 
 namespace MobileJO.Core.ViewModels.CreateCOViewModels
 {
@@ -47,7 +49,6 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
             get => height;
             set => SetProperty(ref height, value);
         }
-        private string _addedUnitDesired { get; set; }
 
         private List<DropdownViewModel> _branch;
         public List<DropdownViewModel> Branch
@@ -57,30 +58,25 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
         }
 
         public DropdownViewModel SelectedBranch { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
+        public string Name { get; set; }
         public string Spouse { get; set; }
         public string DeliveryAddress { get; set; }
         public ObservableCollection<UnitDesiredModel> UnitDesiredDDL { get; private set; } = new ObservableCollection<UnitDesiredModel>();
 
         public decimal Total { get; set; }
+        public string TotalCurrency { get; set; }
         public string OfficialReceipt { get; set; }
 
         //Error Boolean
         public bool SelectedBranchError { get; set; }
-        public bool LastNameError { get; set; }
-        public bool FirstNameError { get; set; }
-        public bool MiddleNameError { get; set; }
+        public bool NameError { get; set; }
         public bool SpouseError { get; set; }
         public bool DeliveryAddressError { get; set; }
         public bool UnitDesiredDDLError { get; set; }
         public bool OfficialReceiptError { get; set; }
 
         //Error Message
-        public string LastNameErrorMsg { get; set; }
-        public string FirstNameErrorMsg { get; set; }
-        public string MiddleNameErrorMsg { get; set; }
+        public string NameErrorMsg { get; set; }
         public string SpouseErrorMsg { get; set; }
         public string DeliveryAddressErrorMsg { get; set; }
         public string OfficialReceiptErrorMsg { get; set; }
@@ -100,28 +96,65 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
         }
         public IMvxCommand AddUnitDesiredCommand => new MvxCommand(async () =>
         {
-            var param = new Dictionary<string, string>
+               var param = new Dictionary<string, string>
                 {
-                    { "AddUnitDesired", _addedUnitDesired }
+                    { "Mode", "Add" }
                 };
 
             var result = await _navigationService.Navigate<AddUnitDesiredViewModel, Dictionary<string, string>, string>(param);
             if (!string.IsNullOrEmpty(result))
             {
                 var deserializedUnitDesired = _serializer.DeserializeObject<UnitDesiredModel>(result);
-
+                deserializedUnitDesired.UnitDesiredID = UnitDesiredDDL.Count + 1;
                 UnitDesiredDDL.Add(deserializedUnitDesired);
                 Height = (UnitDesiredDDL.Count * 18);
                 UnitDesiredDDLError = UnitDesiredDDL.Count > 0 ? false : true;
 
                 Total += Convert.ToDecimal(deserializedUnitDesired.DesiredAmount);
+                TotalCurrency = string.Format(new CultureInfo("fil-PH"), "{0:c}", Total);
+            }
+        });
+        public IMvxCommand EditUnitDesiredCommand => new MvxCommand(async () =>
+        {
+            if(SelectedUnitDesired != null)
+            {
+                var selectedUnitDesiredJsonText = _serializer.SerializeObject(SelectedUnitDesired);
+
+                var param = new Dictionary<string, string>
+                {
+                    { "Mode", "Edit" },
+                    { "SelectedUnitDesired", selectedUnitDesiredJsonText }
+                };
+
+                var result = await _navigationService.Navigate<AddUnitDesiredViewModel, Dictionary<string, string>, string>(param);
+                if (result != selectedUnitDesiredJsonText && result != null)
+                {
+                    var deserializedUnitDesired = _serializer.DeserializeObject<UnitDesiredModel>(result);
+
+                    for (int i = 0; i < UnitDesiredDDL.Count; i++)
+                    {
+                        if (UnitDesiredDDL[i].UnitDesiredID == deserializedUnitDesired.UnitDesiredID)
+                        {
+                            Total = Total + Convert.ToDecimal(deserializedUnitDesired.DesiredAmount) -
+                            Convert.ToDecimal(UnitDesiredDDL[i].DesiredAmount);
+                            TotalCurrency = string.Format(new CultureInfo("fil-PH"), "{0:c}", Total);
+                            UnitDesiredDDL[i] = deserializedUnitDesired;
+                        }
+                    }
+                }
             }
         });
         public IMvxCommand RemoveUnitDesiredCommand => new MvxCommand(() =>
         {
-            UnitDesiredDDL.Remove(SelectedUnitDesired);
-            Height = (UnitDesiredDDL.Count * 18);
-            UnitDesiredDDLError = UnitDesiredDDL.Count > 0 ? false : true;
+            if (SelectedUnitDesired != null)
+            {
+                UnitDesiredDDL.Remove(SelectedUnitDesired);
+                Total -= Convert.ToDecimal(SelectedUnitDesired.DesiredAmount);
+                TotalCurrency = string.Format(new CultureInfo("fil-PH"), "{0:c}", Total);
+                Height = (UnitDesiredDDL.Count * 18);
+                UnitDesiredDDLError = UnitDesiredDDL.Count > 0 ? false : true;
+                SelectedUnitDesired = null;
+            }
         });
         public IMvxCommand LoadPickerDataCommand => new MvxCommand(async () =>
         {
@@ -165,36 +198,15 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
         {
             bool flag = true;
 
-            if (string.IsNullOrWhiteSpace(firstPageFields.LastName) || !Regex.IsMatch(firstPageFields.LastName, Constants.Common.TextRegex))
+            if (string.IsNullOrWhiteSpace(firstPageFields.Name) || !Regex.IsMatch(firstPageFields.Name, Constants.Common.TextRegex))
             {
-                LastNameErrorMsg = string.IsNullOrWhiteSpace(firstPageFields.LastName) ?
-                                                                                            Constants.Messages.LastNameRequired :
-                                                                                            Constants.Messages.LastNameInvalid;
-                LastNameError = true;
+                NameErrorMsg = string.IsNullOrWhiteSpace(firstPageFields.Name) ?
+                                                                                            Constants.Messages.NameRequired :
+                                                                                            Constants.Messages.NameInvalid;
+                NameError = true;
                 flag = false;
             }
-            else { LastNameError = false; }
-
-
-            if (string.IsNullOrWhiteSpace(firstPageFields.FirstName) || !Regex.IsMatch(firstPageFields.FirstName, Constants.Common.TextRegex))
-            {
-                FirstNameErrorMsg = string.IsNullOrWhiteSpace(firstPageFields.FirstName) ?
-                                                                                            Constants.Messages.FirstNameRequired :
-                                                                                            Constants.Messages.FirstNameInvalid;
-                FirstNameError = true;
-                flag = false;
-            }
-            else { FirstNameError = false; }
-
-            if (string.IsNullOrWhiteSpace(firstPageFields.MiddleName) || !Regex.IsMatch(firstPageFields.MiddleName, Constants.Common.TextRegex))
-            {
-                MiddleNameErrorMsg = string.IsNullOrWhiteSpace(firstPageFields.MiddleName) ?
-                                                                                            Constants.Messages.MiddleNameRequired :
-                                                                                            Constants.Messages.MiddleNameInvalid;
-                MiddleNameError = true;
-                flag = false;
-            }
-            else { MiddleNameError = false; }
+            else { NameError = false; }
 
             if (string.IsNullOrWhiteSpace(firstPageFields.Spouse) || !Regex.IsMatch(firstPageFields.Spouse, Constants.Common.TextRegex))
             {
@@ -255,9 +267,7 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
                 var firstPageVM = new FirstPageCOViewModel
                 {
                     SelectedBranch = SelectedBranch != null ? SelectedBranch.Value : 0,
-                    LastName = LastName,
-                    FirstName = FirstName,
-                    MiddleName = MiddleName,
+                    Name = Name,
                     Spouse = Spouse,
                     DeliveryAddress = DeliveryAddress,
                     UnitDesiredDDL = UnitDesiredDDL,
@@ -267,9 +277,7 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
 
                 if (IsValidFields(firstPageVM))
                 {
-                    firstPageVM.LastName.Trim();
-                    firstPageVM.FirstName.Trim();
-                    firstPageVM.MiddleName.Trim();
+                    firstPageVM.Name.Trim();
                     firstPageVM.Spouse.Trim();
                     firstPageVM.OfficialReceipt.Trim();
 
@@ -286,8 +294,7 @@ namespace MobileJO.Core.ViewModels.CreateCOViewModels
                         param.Add(Constants.Params.FirstPage, firstPageJsonText);
                     }
                     SelectedBranchError = false;
-                    LastNameError = false;
-                    FirstNameError = false;
+                    NameError = false;
                     SpouseError = false;
                     DeliveryAddressError = false;
                     UnitDesiredDDLError = false;
